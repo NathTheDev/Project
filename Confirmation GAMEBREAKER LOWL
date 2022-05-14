@@ -1,0 +1,20 @@
+local function callback(Text)
+ if Text == "YES" then
+  loadstring(game:HttpGet("https://raw.githubusercontent.com/NathTheDev/Project/main/Gamebreaker%20Key%20LOWL")()
+elseif Text == ("Button2 text") then
+ print ("Answer2")
+ end
+end
+
+local NotificationBindable = Instance.new("BindableFunction")
+NotificationBindable.OnInvoke = callback
+--
+game.StarterGui:SetCore("SendNotification",  {
+ Title = "Gamebreaker";
+ Text = "Continue? you will have to do the key system.";
+ Icon = "";
+ Duration = 5;
+ Button1 = "YES";
+ Button2 = "nah bro im good";
+ Callback = NotificationBindable;
+})

@@ -1,0 +1,349 @@
+--kill
+
+local library = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wally2", true))()
+
+library.options.underlinecolor = 'rainbow'
+
+local w = library:CreateWindow('Main')
+
+local o = library:CreateWindow('Teleport')
+
+local ok = library:CreateWindow('Misc')
+
+local ok2 = library:CreateWindow('Wood')
+
+local ok3 = library:CreateWindow('GUI and Credits')
+
+local b = w:Button("Dupe Axe", function()
+   loadstring(game:HttpGetAsync("https://pastebin.com/raw/3rPM2Wcv"))()
+end)
+local b1 = w:Button("Dupe Money", function()
+    loadstring(game:HttpGetAsync("https://pastebin.com/raw/6dVEziF0"))()
+end)
+w:Section('Plot')
+local b12 = w:Button("Free Land", function()
+    loadstring(game:HttpGetAsync("https://pastebin.com/raw/uUbT4S7Y"))()
+end)
+local b13 = w:Button("Max Land", function()
+    loadstring(game:HttpGetAsync("https://pastebin.com/raw/XxzhNMEF"))()
+end)
+local b2 = w:Button("Anti-Blacklist", function()
+    local plr = game.Players.LocalPlayer
+	    local cframe
+	    for i,v in next, workspace:GetDescendants() do
+	        if v:IsA("SpawnLocation") then
+	            v.Touched:Connect(function(h)
+	            if h.Parent == plr.Character and cframe then
+	                plr.Character:SetPrimaryPartCFrame(cframe)
+	                end
+	            end)
+	        end
+	    end
+	 
+	    game:GetService("RunService"):BindToRenderStep("NO HACKS",Enum.RenderPriority.Last.Value,function()
+	    if game.Players.LocalPlayer.Character.PrimaryPart then
+	        cframe = game.Players.LocalPlayer.Character.PrimaryPart.CFrame
+	        end
+	    end)
+	 
+	    for i,v in next, debug.getregistry() do
+	        if type(v)=='function' and debug.getupvalues(v).lastUpdate then
+	            debug.setupvalue(v,"lastUpdate",math.huge)
+	            break
+	        end
+	    end
+	 
+	    for i,v in next, workspace.Effects:GetChildren() do
+	        if v:IsA("BasePart") and v.Name == "BlacklistWall" then
+	            v:Destroy()
+	        end
+	    end
+	end)
+local b7 = w:Button("Blacklist All", function()
+    Client = game.ReplicatedStorage.Interaction.ClientSetListPlayer
+	players = game.Players
+	for i, v in pairs(players:GetPlayers()) do
+	    if v.Name ~= players.LocalPlayer.Name then
+	        Client:InvokeServer(players.LocalPlayer.BlacklistFolder, v, true)
+	    end
+	end
+	players.PlayerAdded:connect(function(plr)
+	    Client:InvokeServer(players.LocalPlayer.BlacklistFolder, plr, true)
+	end)
+	end)
+local b7000 = w:Button("Save Current Slot", function()
+    local CheckSlot = CheckSlotNumber()
+    if CheckSlot ~= false then
+        if CurrentSlot ~= -1 then
+            ScriptLoadOrSave = true
+            local SaveSlot = game.ReplicatedStorage.LoadSaveRequests.RequestSave:InvokeServer(CheckSlot)
+            if SaveSlot == true then
+                SendNotification("Gamebreaker V3", "Saved ;)", 2)
+                wait(.5)
+                ScriptLoadOrSave = false
+            elseif SaveSlot == false then
+                SendNotification("Gamebreaker V3", "Already Saving!", 1)
+                wait(.5)
+                ScriptLoadOrSave = false
+            end
+        else
+            SendNotification("Gamebreaker V3", "Error! You're not even Loading", 1)
+        end
+    else
+        SendNotification("Gamebreaker V3", "Hmm... Something's wrong", 1)
+    end
+end)
+local MoneyCooldown = false
+local CurrentSlot = game.Players.LocalPlayer:WaitForChild("CurrentSaveSlot").Value
+local ScriptLoadOrSave = false
+local CurrentlySavingOrLoading = game.Players.LocalPlayer:WaitForChild("CurrentlySavingOrLoading")
+
+local function CheckIfSlotAvailable(Slot)
+    for a,b in pairs(game.ReplicatedStorage.LoadSaveRequests.GetMetaData:InvokeServer(game.Players.LocalPlayer)) do
+        if a == Slot then
+            for c,d in pairs(b) do
+                if c == "NumSaves" and d ~= 0 then
+                    return true
+                else
+                    return false
+                end
+            end
+        end
+    end
+end
+
+local b2333 = o:Button("Land Store", function()
+    function Tlprt(Cframe)
+        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+        wait(0.1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Cframe
+    end
+    Tlprt(CFrame.new(258, 5, -99))
+    end)
+local bot = o:Button("Fine Arts", function()
+    function Tlprt(Cframe)
+        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+        wait(0.1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Cframe
+    end
+    Tlprt(CFrame.new(5207, -156, 719))
+    end)
+local bok = o:Button("Volcano Win", function()
+    function Tlprt(Cframe)
+        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+        wait(0.1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Cframe
+    end
+    Tlprt(CFrame.new(-1668.39197, 349.601929, 1475.36255))
+    end)
+local bak = o:Button("Boxed Cars", function()
+    function Tlprt(Cframe)
+        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+        wait(0.1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Cframe
+    end
+    Tlprt(CFrame.new(509, 5.2, -1463))
+    end)
+
+local bop = o:Button("Fancy Furnishings", function()
+        function Tlprt(Cframe)
+        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+        wait(0.1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Cframe
+    end
+    Tlprt(CFrame.new(491, 13, -1720))
+    end)
+local bob = o:Button("Bob's Shack", function()
+        function Tlprt(Cframe)
+        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+        wait(0.1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Cframe
+    end
+    Tlprt(CFrame.new(260, 10, -2542))
+    end)
+local b323 = o:Button("Strange Man", function()
+    function Tlprt(Cframe)
+        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+        wait(0.1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Cframe
+    end
+    Tlprt(CFrame.new(1061, 20, 1131))
+    end)
+local b33 = o:Button("Spawn", function()
+    function Tlprt(Cframe)
+        game.Players.LocalPlayer.Character.Humanoid.Jump = true
+        wait(0.1)
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Cframe
+    end
+    Tlprt(CFrame.new(155, 5, 74))
+    end)
+local b233 = o:Button("Link's Logic", function()
+    function Tlprt(Cframe)
+    game.Players.LocalPlayer.Character.Humanoid.Jump = true
+    wait(0.1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Cframe
+    end
+    Tlprt(CFrame.new(4607, 9, -798))
+    end)
+local b2343 = o:Button("Your Base", function()
+    for i,v in pairs(game.Workspace.Properties:GetChildren()) do
+		if v.Owner.Value == game.Players.LocalPlayer then
+			game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.OriginSquare.CFrame + Vector3.new(0,10,0)
+		end
+	end
+end)
+local box = ok:Box('Teleport to Player', {
+   flag = "fov";
+   type = 'string';
+}, function(v)
+    local tp_namedplayer = v
+    local tp_player = game:GetService("Players")[tp_namedplayer]
+   
+    if tp_player then
+            for i = 1,5 do
+        wait()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = tp_player.Character.HumanoidRootPart.CFrame + Vector3.new(0, 3, 0)
+        end
+    end
+	    end)
+local bo1x = ok:Box('Tp to Player Base', {
+   flag = "fov";
+   type = 'string';
+}, function(v)
+    local Plr = v
+    for i,v in pairs(game.Workspace.Properties:GetChildren()) do
+        if v.Owner.Value == game.Players[Plr] then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.OriginSquare.CFrame + Vector3.new(0,10,0)
+        end
+    end
+end)
+local b3z3x = ok:Box('Teleport Wood (Username)', {
+   flag = "fov";
+   type = 'string';
+}, function(v)
+    Ps = nil
+    for i, v in pairs(game.Workspace.Properties:GetChildren()) do
+    if v.Owner.Value == game.Players[v] then
+    Ps = v.OriginSquare.Position + Vector3.new(0,30,0)
+    end
+    end
+        for _, Log in pairs(game.Workspace.LogModels:GetChildren()) do
+            if Log.Name:sub(1, 6) == "Loose_" and Log:findFirstChild("Owner") then
+                if Log.Owner.Value == game.Players.LocalPlayer then
+                    Log:MoveTo(Ps)
+                    for i=1,100 do
+                        game.ReplicatedStorage.Interaction.ClientIsDragging:FireServer(Log)
+                    end
+                end
+            end
+        end
+    end)
+local b32x3 = ok:Button("Paint Tool", function()
+    loadstring(game:HttpGet('https://pastebin.com/LnfDRNnb'))()
+end)
+local b323 = ok:Button("All Blueprint (Temporary)", function()
+    for i,v in pairs(game.ReplicatedStorage.Purchasables.Structures.BlueprintStructures:GetChildren()) do
+	local clone = v:Clone()
+	clone.Parent = game.Players.LocalPlayer.PlayerBlueprints.Blueprints
+	end
+end)
+local b323 = ok:Button("No Fog", function()
+    game.Lighting.Changed:connect(function()
+	game.Lighting.TimeOfDay = "12:00:00"
+	game.Lighting.FogEnd = 9999
+	game.Lighting.Brightness = 2
+end)
+end)
+
+local bak9 = ok2:Button("Cavecrawler (Blue Wood)", function()
+    function Tlprt(Cframe)
+    game.Players.LocalPlayer.Character.Humanoid.Jump = true
+    wait(0.1)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = Cframe
+    end
+    Tlprt(CFrame.new(3581, -177, 430))
+    end)
+local bak92 = ok2:Button("Volcano (Lava Wood)", function()
+    for i, v in pairs(game.Workspace:GetChildren()) do
+	    if v.Name == "TreeRegion" then
+	        for j, k in ipairs(v:GetChildren()) do
+	            if k:FindFirstChild("TreeClass") and k.TreeClass.Value == "Volcano"  then
+	                game.Players.LocalPlayer.Character:MoveTo(k.WoodSection.Position)
+					break
+	            end
+	        end
+	    end
+	end
+end)
+local bak91 = ok2:Button("Snowglow (Yellow Wood)", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-1124.91565, 1.10021782, -943.932129)
+end)
+local bak90 = ok2:Button("Frost (Ice Wood)", function()
+    for i, v in pairs(game.Workspace:GetChildren()) do
+	    if v.Name == "TreeRegion" then
+	        for j, k in ipairs(v:GetChildren()) do
+	            if k:FindFirstChild("TreeClass") and k.TreeClass.Value == "Frost"  then
+	                game.Players.LocalPlayer.Character:MoveTo(k.WoodSection.Position)
+					break
+	            end
+	        end
+	    end
+	end
+end)
+local bak97 = ok2:Button("Zombie (Green Wood)", function()
+    for i, v in pairs(game.Workspace:GetChildren()) do
+	    if v.Name == "TreeRegion" then
+	        for j, k in ipairs(v:GetChildren()) do
+	            if k:FindFirstChild("TreeClass") and k.TreeClass.Value == "GreenSwampy"  then
+	                game.Players.LocalPlayer.Character:MoveTo(k.WoodSection.Position)
+					break
+	            end
+	        end
+	    end
+	end
+end)
+local bak99 = ok2:Button("Gold Swampy (Gold Wood)", function()
+    for i, v in pairs(game.Workspace:GetChildren()) do
+	    if v.Name == "TreeRegion" then
+	        for j, k in ipairs(v:GetChildren()) do
+	            if k:FindFirstChild("TreeClass") and k.TreeClass.Value == "GoldSwampy"  then
+	                game.Players.LocalPlayer.Character:MoveTo(k.WoodSection.Position)
+					break
+	            end
+	        end
+	    end
+	end
+end)
+local bak910 = ok2:Button("Palm (Palm Wood)", function()
+    for i, v in pairs(game.Workspace:GetChildren()) do
+	    if v.Name == "TreeRegion" then
+	        for j, k in ipairs(v:GetChildren()) do
+	            if k:FindFirstChild("TreeClass") and k.TreeClass.Value == "Palm"  then
+	                game.Players.LocalPlayer.Character:MoveTo(k.WoodSection.Position)
+					break
+	            end
+	        end
+	    end
+	end
+end)
+ok3:Section('Developer')
+local bp0 = ok3:Button("Nathan#0001", function()
+    print("error")
+end)
+ok3:Section('GUI')
+local bp2 = ok3:Button("Solo Dupe", function()
+    loadstring(game:HttpGet'https://raw.githubusercontent.com/0x37Dev/Cool-Solo-Dupe-Thing/main/script.lua')()
+end)
+local bp1 = ok3:Button("Alpha Base Drop V1", function()
+    loadstring(game:GetObjects("rbxassetid://4832010530")[1].Source)()
+end)
+local bp5 = ok3:Button("Alpha Base Drop V2", function()
+    loadstring(game:HttpGet(("https://pastebin.com/raw/nNEZJuVD")))()
+end)
+local bp3 = ok3:Button("Arceus X Fly GUI", function()
+    loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\40\39\104\116\116\112\115\58\47\47\103\105\115\116\46\103\105\116\104\117\98\117\115\101\114\99\111\110\116\101\110\116\46\99\111\109\47\109\101\111\122\111\110\101\89\84\47\98\102\48\51\55\100\102\102\57\102\48\97\55\48\48\49\55\51\48\52\100\100\100\54\55\102\100\99\100\51\55\48\47\114\97\119\47\101\49\52\101\55\52\102\52\50\53\98\48\54\48\100\102\53\50\51\51\52\51\99\102\51\48\98\55\56\55\48\55\52\101\98\51\99\53\100\50\47\97\114\99\101\117\115\37\50\53\50\48\120\37\50\53\50\48\102\108\121\37\50\53\50\48\50\37\50\53\50\48\111\98\102\108\117\99\97\116\111\114\39\41\44\116\114\117\101\41\41\40\41\10\10")();
+end)
+local bp4 = ok3:Button("Infinite Yield", function()
+    loadstring(game:HttpGet(("https://pastebin.com/raw/0zaaDwC9")))()
+end)
+--local t = w:Toggle('Example Toggle', {flag = "toggle1"})

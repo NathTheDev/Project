@@ -1,6 +1,33 @@
 local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
 local Window  = Library.CreateLib("Gamebreaker V4 | FE Script Hub", "Serpent")
 
+local Oke = Instance.new("ScreenGui")
+local Open = Instance.new("TextButton")
+
+
+Oke.Name = "Oke"
+Oke.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+Open.Name = "Open"
+Open.Parent = Oke
+Open.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Open.BorderColor3 = Color3.fromRGB(255, 93, 247)
+Open.BorderSizePixel = 2
+Open.Position = UDim2.new(0.0544499494, 0, 0.479130059, 0)
+Open.Size = UDim2.new(0, 48, 0, 26)
+Open.Font = Enum.Font.SourceSansBold
+Open.Text = "Open"
+Open.TextColor3 = Color3.fromRGB(255, 85, 255)
+Open.TextSize = 14.000
+
+
+local function MCFWRD_fake_script()
+	local script = Instance.new('Script', Oke)
+function()
+	Library:ToggleUI()
+end
+coroutine.wrap(MCFWRD_fake_script)()
+
 game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("//Gamebreaker Loaded!", "All")
 setclipboard("Gamebreaker Winning")
 

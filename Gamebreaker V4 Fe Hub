@@ -19,14 +19,9 @@ Open.Font = Enum.Font.SourceSansBold
 Open.Text = "Open"
 Open.TextColor3 = Color3.fromRGB(255, 85, 255)
 Open.TextSize = 14.000
-
-
-local function MCFWRD_fake_script()
-	local script = Instance.new('Script', Oke)
-function()
-	Library:ToggleUI()
-end
-coroutine.wrap(MCFWRD_fake_script)()
+Open.Text.MouseButton1Down:connect(function()
+Library:ToggleUI()
+end)
 
 game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer("//Gamebreaker Loaded!", "All")
 setclipboard("Gamebreaker Winning")

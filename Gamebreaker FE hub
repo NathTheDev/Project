@@ -1556,8 +1556,7 @@ while wait(0.05) do
 paint()
 equip()
 end
-end)
-end)
+end
 
 Section:NewButton("Back to Normal", "", function()
     game.Players.LocalPlayer.Character.Head:Destroy()

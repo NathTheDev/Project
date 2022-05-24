@@ -1545,6 +1545,6 @@ Open.Font = Enum.Font.SourceSansBold
 Open.Text = "Open"
 Open.TextColor3 = Color3.fromRGB(255, 85, 255)
 Open.TextSize = 14.000
-Open.Text.MouseButton1Down:connect(function()
-Library:ToggleUI()
+Open.MouseButton1Down:connect(function()
+    Library:ToggleUI()
 end)

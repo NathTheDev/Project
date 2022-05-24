@@ -1,3 +1,5 @@
+loadstring(game:HttpGetAsync("https://pastebin.com/raw/Ba5A2mXj"))()
+
 local Library = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
 local Window  = Library.CreateLib("Gamebreaker V4 | FE Script Hub", "Sentinel")
 
@@ -1523,7 +1525,4 @@ end)
 
 Section:NewButton("Back to Normal", "", function()
     game.Players.LocalPlayer.Character.Head:Destroy()
-end)
-Section1:NewButton("RTX", "", function()
-    loadstring(game:HttpGetAsync("https://pastebin./raw/Ba5A2mXj"))()
 end)

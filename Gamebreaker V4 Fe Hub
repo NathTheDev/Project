@@ -1525,26 +1525,5 @@ Section:NewButton("Back to Normal", "", function()
     game.Players.LocalPlayer.Character.Head:Destroy()
 end)
 Section1:NewButton("RTX", "", function()
-    loadstring(game:HttpGetAsync("https://pastebin.com/raw/Ba5A2mXj"))()
-end)
-local Oke = Instance.new("ScreenGui")
-local Open = Instance.new("TextButton")
-
-
-Oke.Name = "Oke"
-Oke.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-
-Open.Name = "Open"
-Open.Parent = Oke
-Open.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Open.BorderColor3 = Color3.fromRGB(255, 93, 247)
-Open.BorderSizePixel = 2
-Open.Position = UDim2.new(0.0544499494, 0, 0.479130059, 0)
-Open.Size = UDim2.new(0, 48, 0, 26)
-Open.Font = Enum.Font.SourceSansBold
-Open.Text = "Open"
-Open.TextColor3 = Color3.fromRGB(255, 85, 255)
-Open.TextSize = 14.000
-Open.MouseButton1Down:connect(function()
-    Library:ToggleUI()
+    loadstring(game:HttpGetAsync("https://pastebin./raw/Ba5A2mXj"))()
 end)

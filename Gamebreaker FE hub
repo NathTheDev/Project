@@ -1558,6 +1558,14 @@ equip()
 end
 end)
 
+Section:NewButton("Wings", "", function()
+    loadstring(game:GetObjects("rbxassetid://3040946714")[1].Source)()
+end)
+
+Section:NewButton("Tail", "", function()
+    loadstring(game:GetObjects("rbxassetid://3074817074")[1].Source)()
+end)
+
 Section:NewButton("Back to Normal", "", function()
     game.Players.LocalPlayer.Character.Head:Destroy()
 end)

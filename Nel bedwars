@@ -1,12 +1,12 @@
 game.StarterGui:SetCore("SendNotification", {
-    Title = "Bedwars OP Script";
+    Title = "Bedwars Script";
     Text = "Made by Gamebreaker Help by Ray Hub"; -- what the text says (ofc)
     Duration = 30;
 })
 wait(1)
 game.StarterGui:SetCore("SendNotification", {
     Title = "Enjoy";
-    Text = "Enjoy using Hacks!"; -- what the text says (ofc)
+    Text = "Enjoy using Gamebreaker X Ray Hub!"; -- what the text says (ofc)
     Duration = 30;
 })
 
@@ -364,6 +364,7 @@ local Tab4Section = Tab4 :NewSection("Filtering Enabled ( FE )")
 local Tab5 = window:NewTab("Credits")
 local Tab5Section = Tab5:NewSection("Made By Gamebreaker")
 local Tab5Section = Tab5:NewSection("Helper - Ray Hub")
+local Tab5Section = Tab5:NewSection("Bungi - Baby Ace")
 
 -- Buttons
 Tab1Section:NewToggle("CFrame", "", function(state)
@@ -387,6 +388,63 @@ end)
 Tab1Section:NewSlider("Speed 1-42", "Adjust CFrame speed", 42, 1, function(s)
 	speedval["Value"] = s
 end)
+
+Tab1Section:NewToggle("AntiVoid", "Give's you a second chance to get back on land", function(state) 
+         if state then 
+                 antivoidp = Instance.new("Part", workspace) 
+                 antivoidp.Name = "AntiVoid" 
+                 antivoidp.CanCollide = true 
+                 antivoidp.Size = Vector3.new(2048, 1, 2048) 
+                 antivoidp.Anchored = true 
+                 antivoidp.Transparency = 1 - (antivoidtransparent["Value"] / 100) 
+                 antivoidp.Material = Enum.Material.Neon 
+                 antivoidp.Color = Color3.fromHSV(antivoidcolor["Hue"], antivoidcolor["Sat"], antivoidcolor["Value"]) 
+                 antivoidp.Position = Vector3.new(0, 23.5, 0) 
+                 antivoidp.Touched:connect(function(touchedvoid) 
+                         if touchedvoid.Parent:FindFirstChild("Humanoid") and touchedvoid.Parent.Name == lplr.Name then 
+                                 lplr.Character.Humanoid.Jump = true 
+                                 lplr.Character.Humanoid:ChangeState("Jumping") 
+                                 wait(0.2) 
+                                 lplr.Character.Humanoid:ChangeState("Jumping") 
+                                 wait(0.2) 
+                                 lplr.Character.Humanoid:ChangeState("Jumping") 
+                         end 
+                 end) 
+         else 
+                 if antivoidp then 
+                         antivoidp:Remove() 
+                 end 
+         end 
+ end) 
+  
+ Tab1Section:NewColorPicker("Color", "Adjust antivoid color", Color3.fromHSV(antivoidcolor["Hue"], antivoidcolor["Sat"], antivoidcolor["Value"]), function(val) 
+         if antivoidp then 
+                 antivoidp.Color = (val) 
+         end 
+ end)
+ 
+ Tab1Section:NewToggle("Auto-Sprint", "Automatically on your sprint", function(state) 
+         if state then 
+                 BindToStepped("Sprint", 1, function() 
+                         if SprintCont.sprinting == false then 
+                                 SprintCont:startSprinting() 
+                         end 
+                 end) 
+         else 
+                 UnbindFromStepped("Sprint") 
+                 SprintCont:stopSprinting() 
+         end 
+ end)  
+
+Tab1Section:NewToggle("Anti-Knockback", "Prevents taking a knockback", function(state) 
+         if state then 
+                 KnockbackTable["kbDirectionStrength"] = 0 
+                 KnockbackTable["kbUpwardStrength"] = 0 
+         else 
+                 KnockbackTable["kbDirectionStrength"] = 100 
+                 KnockbackTable["kbUpwardStrength"] = 100 
+         end 
+ end) 
 
 Tab1Section:NewToggle("KillAura", "Autoswing the sword if someone is near you", function(state)
 	if state then
@@ -463,6 +521,16 @@ Tab1Section:NewToggle("No Fall Damage", "Opens No Fall Damage", function(callbac
     end
 end)
 
+Tab1Section:NewButton("ESP", "Opens Esp", function()
+    _G.FriendColor = Color3.fromRGB(0, 0, 255)
+_G.EnemyColor = Color3.fromRGB(255, 0, 0)
+_G.UseTeamColor = false
+
+--------------------------------------------------------------------
+
+loadstring(game:HttpGet("https://raw.githubusercontent.com/zeroisswag/universal-esp/main/esp.lua"))()
+end)
+
 Tab2Section:NewButton("Vape","Opens Vape",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/Error-virus/holy-arceus-x-working-vape-v4/main/vape%20v4%20fixed%20version.lua", true))()
 end)
@@ -503,77 +571,8 @@ Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=782843869
 Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=782846423"
 end)
 
-local Tab4Section = Tab4:NewSection("Effects")
+local Tab4Section = Tab4:NewSection("Misc")
 
-Tab4Section:NewButton("Light","Opens Light",function()
-loadstring(game:HttpGet("https://pastebin.com/raw/QSR8pjFn",true))()
-end)
-
-Tab4Section:NewButton("Make You Feel Angry","Opens Make You Feel Angry",function()
-loadstring(game:HttpGet("https://pastebin.com/raw/0W2VG7DZ",true))()
-end)
-
-Tab4Section:NewButton("Make You Feel Cool","Opens Make You Feel Cool",function()
-print("HI")
-loadstring(game:HttpGet("https://pastebin.com/raw/MSZPFVfE",true))()
-end)
-
-local Tab4Section = Tab4:NewSection("Cape")
-
-Tab4Section:NewButton("Gamebreaker Cape", "Opens JN Cape", function()
-local player = game:GetService("Players")
-local lplr = player.LocalPlayer
-if lplr.Character.Humanoid.RigType == Enum.HumanoidRigType.R15 then
-      if lplr.Character:FindFirstChild("Torso") then
-        torso = lplr.Character.Torso
-      else
-        torso = lplr.Character.UpperTorso
-      end
-      local CapeP = Instance.new("Part", torso.Parent)
-      CapeP.Name = "Cape"
-      CapeP.Anchored = false
-      CapeP.CanCollide = false
-      CapeP.TopSurface = 0
-      CapeP.BottomSurface = 0
-      CapeP.Color = Color3.fromRGB(34,34,34)
-      CapeP.FormFactor = "Custom"
-      CapeP.Size = Vector3.new(0.2,0.2,0.2)
-      local decal = Instance.new("Decal", CapeP)
-      decal.Texture = "http://www.roblox.com/asset/?id=9969269269"
-      decal.Face = "Back"
-      local msh = Instance.new("BlockMesh", CapeP)
-      msh.Scale = Vector3.new(9,17.5,0.5)
-      local motor = Instance.new("Motor", CapeP)
-      motor.Part0 = CapeP
-      motor.Part1 = torso
-      motor.MaxVelocity = 0.01
-      motor.C0 = CFrame.new(0,1.75,0) * CFrame.Angles(0,math.rad(90),0)
-      motor.C1 = CFrame.new(0,1,0.45) * CFrame.Angles(0,math.rad(90),0)
-      local wave = false
-      repeat wait(1/44)
-        decal.Transparency = torso.Transparency
-        local ang = 0.1
-        local oldmag = torso.Velocity.magnitude
-        local mv = 0.002
-        if wave then
-          ang = ang + ((torso.Velocity.magnitude/10) * 0.05) + 0.05
-          wave = false
-        else
-          wave = true
-        end
-        ang = ang + math.min(torso.Velocity.magnitude/11, 0.5)
-        motor.MaxVelocity = math.min((torso.Velocity.magnitude/111), 0.04) + mv
-        motor.DesiredAngle = -ang
-        if motor.CurrentAngle < -0.2 and motor.DesiredAngle > -0.2 then
-          motor.MaxVelocity = 0.04
-        end
-        repeat wait() until motor.CurrentAngle == motor.DesiredAngle or math.abs(torso.Velocity.magnitude - oldmag) >= (torso.Velocity.magnitude/10) + 1
-        if torso.Velocity.magnitude < 0.1 then
-          wait(0.1)
-        end
-      until not CapeP or CapeP.Parent ~= torso.Parent
-    end
-end)
 Tab4Section:NewButton("NightBed Cape","Opens NightBed Cape",function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/NTDCore/CapePACK/main/Nightbed.Cape%3F.lua",true))()
 end)
@@ -687,8 +686,4 @@ end)
 Tab1Section:NewButton("FixCam", "fix camera bug on mobile", function()
 	cam.CameraType = Enum.CameraType.Fixed
 	cam.CameraType = Enum.CameraType.Custom
-end)
-
-Tab2Section:NewButton("Future", "e", function()
-loadstring(game:HttpGet('https://raw.githubusercontent.com/joeengo/Future/main/loadstring.lua', true))()
 end)

@@ -1,6 +1,6 @@
 game.StarterGui:SetCore("SendNotification", {
-    Title = "Bedwars Script";
-    Text = "Made by Gamebreaker Help by Ray Hub"; -- what the text says (ofc)
+    Title = Welcome";
+    Text = "Welcome .. player.Name .."; -- what the text says (ofc)
     Duration = 30;
 })
 wait(1)
@@ -321,8 +321,8 @@ end
 
 
 
-local kavoUi = loadstring(game:HttpGet("https://raw.githubusercontent.com/PrototypeHub/SytroNight4ROBLOX/main/libraries/kavo.lua"))()
-local window = kavoUi.CreateLib("Gamebreaker X Ray Hub | Bedwars", "DarkTheme")
+local Gb = loadstring(game:HttpGet("https://raw.githubusercontent.com/PrototypeHub/SytroNight4ROBLOX/main/libraries/kavo.lua"))()
+local Window = Gb.CreateLib("Gamebreaker X Ray Hub | Bedwars", "DarkTheme")
 local entity = loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/Libraries/entityHandler.lua", true))()
 
 do
@@ -355,16 +355,18 @@ local function makeRainbowText(text)
 end
 -- Tab
 
-local Tab1 = window:NewTab("Main")
+local Tab1 = Window:NewTab("Main")
 local Tab1Section = Tab1:NewSection("Main Script's")
-local Tab2 = window:NewTab("Other Scripts")
+local Tab2 = Window:NewTab("Other Scripts")
 local Tab2Section = Tab2:NewSection("Other Scripts")
-local Tab4 = window:NewTab("Misc")
+local Tab4 = Window:NewTab("Misc")
 local Tab4Section = Tab4 :NewSection("Filtering Enabled ( FE )")
-local Tab5 = window:NewTab("Credits")
-local Tab5Section = Tab5:NewSection("Made By Gamebreaker")
-local Tab5Section = Tab5:NewSection("Helper - Ray Hub")
-local Tab5Section = Tab5:NewSection("Bungi - Baby Ace")
+local Tab5 = Window:NewTab("Credits")
+local Tab5Section = Tab5:NewSection("Owner - Gamebreaker")
+local Tab5Section = Tab5:NewSection("Helper - Ray Hub Add Anti-Void,Anti-Knockback,Reach")
+local Tab5Section = Tab5:NewSection("Animation's - JN HH")
+local Tab6 = Window:NewTab("Settings")
+local Tab6Section = Tab6:NewSection("Toggle UI")
 
 -- Buttons
 Tab1Section:NewToggle("CFrame", "", function(state)
@@ -462,7 +464,9 @@ Tab1Section:NewSlider("Distance 1-20", "Increase killaura distance", 20, 1, func
 	DistVal["Value"] = val
 end)
 
-Tab1Section:NewToggle("No Swing", "Disable killaura swing", function(state)
+
+
+Tab1Section:NewToggle("Disable KillAura Swing", "Disable killaura swing", function(state)
 	if state then
 		if killauraswing["Enabled"] == true then
 			killauraswing["Enabled"] = false
@@ -478,20 +482,77 @@ Tab1Section:NewSlider("Sound 1-0", "Adjust killaura sound", 1, 0, function(val)
 	killaurasoundval["Value"] = val
 end)
 	
+Tab1Section:NewToggle("Reach", "Extend your attack range", function(state) 
+         if state then 
+                 CombatConstant.RAYCAST_SWORD_CHARACTER_DISTANCE = (reachval["Value"] - 0.0001) 
+         else 
+                 CombatConstant.RAYCAST_SWORD_CHARACTER_DISTANCE = 14.4 
+         end 
+ end) 
+  
+Tab1Section:NewSlider("Range 18-1", "", 18, 1, function(val) -- 500 (MaxValue) | 0 (MinValue) 
+         reachval["Value"] = val 
+ end)
 
-Tab1Section:NewToggle("Bed Nuker", "Auto break bed and covers", function(state)
-	if state then
-		BindToStepped("BedNuker", 1, function()
-			nuker()
-		end)
-	else
-		UnbindFromStepped("BedNuker")
+Tab1Section:NewToggle("Bednuker ( Fixed )", "Fix Bednuker", function(state)
+    if state then
+        function getclosebed()
+    for i,v in pairs(game:GetService("Workspace").Map.Blocks:GetChildren()) do
+        if v.Name == "bed" and v:FindFirstChild("Covers") then
+            local magcheck = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Covers.Position).Magnitude
+            if magcheck <= 45 then
+                return v
+            end
+        end
+    end
+end
+
+local added
+function getanumber()
+    added = 0
+    for i,v in pairs(game.Workspace.Map.Blocks:GetChildren()) do
+        local target = getclosebed()
+        if target ~= nil and v.Position then
+            if target.Position.X == v.Position.X and target.Position.Z == v.Position.Z then
+                if v.Position.Y > target.Position.Y and v.Position.Y - target.Position.Y < 16.5 then
+                    added = added + 1
+                end
+                if v.Position.Y < target.Position.Y and v.Position.Y - target.Position.Y < 16.5 then
+                    added = added - 1
+                end
+            end
+        end
+    end
+    return added
+end
+
+function hitblock(X,Y,Z)
+    local args = {
+        [1] = {
+            ["blockRef"] = {
+                ["blockPosition"] = Vector3.new(X/3,Y/3,Z/3)
+            },
+            ["hitPosition"] = Vector3.new(X/3,Y/3,Z/3),
+            ["hitNormal"] = Vector3.new(X/3,Y/3,Z/3)
+        }
+    }
+
+    game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged.DamageBlock:InvokeServer(unpack(args))
+end
+
+local function getItem(itemName)
+	for i5, v5 in pairs(getinv(lplr)["items"]) do
+		if v5["itemType"] == itemName then
+			return v5, i5
+		end
 	end
+	return nil
+end
+    else
+        print("Toggle Off")
+    end
 end)
 
-Tab1Section:NewButton("Keyboard", "Opens Keyboard", function()
-loadstring(game:HttpGet("https://pastebin.com/raw/kC3dAMvt"))()
-end)
 
 Tab1Section:NewButton("Infinite Jump", "Opens Infinite Jump", function()
     local InfiniteJumpEnabled = true
@@ -521,14 +582,275 @@ Tab1Section:NewToggle("No Fall Damage", "Opens No Fall Damage", function(callbac
     end
 end)
 
-Tab1Section:NewButton("ESP", "Opens Esp", function()
-    _G.FriendColor = Color3.fromRGB(0, 0, 255)
-_G.EnemyColor = Color3.fromRGB(255, 0, 0)
-_G.UseTeamColor = false
+Tab1Section:NewToggle("ESP", "ToggleInfo", function(state)
+    if state then
+        local lplr = game.Players.LocalPlayer
+local camera = game:GetService("Workspace").CurrentCamera
+local CurrentCamera = workspace.CurrentCamera
+local worldToViewportPoint = CurrentCamera.worldToViewportPoint
 
---------------------------------------------------------------------
+local HeadOff = Vector3.new(0, 0.5, 0)
+local LegOff = Vector3.new(0,3,0)
 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/zeroisswag/universal-esp/main/esp.lua"))()
+for i,v in pairs(game.Players:GetChildren()) do
+    local BoxOutline = Drawing.new("Square")
+    BoxOutline.Visible = false
+    BoxOutline.Color = Color3.new(0,0,0)
+    BoxOutline.Thickness = 3
+    BoxOutline.Transparency = 1
+    BoxOutline.Filled = false
+
+    local Box = Drawing.new("Square")
+    Box.Visible = false
+    Box.Color = Color3.new(1,1,1)
+    Box.Thickness = 1
+    Box.Transparency = 1
+    Box.Filled = false
+
+    local HealthBarOutline = Drawing.new("Square")
+    HealthBarOutline.Thickness = 3
+    HealthBarOutline.Filled = false
+    HealthBarOutline.Color = Color3.new(0,0,0)
+    HealthBarOutline.Transparency = 1
+    HealthBarOutline.Visible = false
+
+    local HealthBar = Drawing.new("Square")
+    HealthBar.Thickness = 1
+    HealthBar.Filled = false
+    HealthBar.Transparency = 1
+    HealthBar.Visible = false
+
+    function boxesp()
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
+                local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+
+                local RootPart = v.Character.HumanoidRootPart
+                local Head = v.Character.Head
+                local RootPosition, RootVis = worldToViewportPoint(CurrentCamera, RootPart.Position)
+                local HeadPosition = worldToViewportPoint(CurrentCamera, Head.Position + HeadOff)
+                local LegPosition = worldToViewportPoint(CurrentCamera, RootPart.Position - LegOff)
+
+                if onScreen then
+                    BoxOutline.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
+                    BoxOutline.Position = Vector2.new(RootPosition.X - BoxOutline.Size.X / 2, RootPosition.Y - BoxOutline.Size.Y / 2)
+                    BoxOutline.Visible = true
+
+                    Box.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
+                    Box.Position = Vector2.new(RootPosition.X - Box.Size.X / 2, RootPosition.Y - Box.Size.Y / 2)
+                    Box.Visible = true
+
+                    HealthBarOutline.Size = Vector2.new(2, HeadPosition.Y - LegPosition.Y)
+                    HealthBarOutline.Position = BoxOutline.Position - Vector2.new(6,0)
+                    HealthBarOutline.Visible = true
+
+                    HealthBar.Size = Vector2.new(2, (HeadPosition.Y - LegPosition.Y) / (game:GetService("Players")[v.Character.Name].NRPBS["MaxHealth"].Value / math.clamp(game:GetService("Players")[v.Character.Name].NRPBS["Health"].Value, 0, game:GetService("Players")[v.Character.Name].NRPBS:WaitForChild("MaxHealth").Value)))
+                    HealthBar.Position = Vector2.new(Box.Position.X - 6, Box.Position.Y + (1 / HealthBar.Size.Y))
+                    HealthBar.Color = Color3.fromRGB(255 - 255 / (game:GetService("Players")[v.Character.Name].NRPBS["MaxHealth"].Value / game:GetService("Players")[v.Character.Name].NRPBS["Health"].Value), 255 / (game:GetService("Players")[v.Character.Name].NRPBS["MaxHealth"].Value / game:GetService("Players")[v.Character.Name].NRPBS["Health"].Value), 0)
+                    HealthBar.Visible = true
+
+                    if v.TeamColor == lplr.TeamColor then
+                        --- Our Team
+                        BoxOutline.Visible = false
+                        Box.Visible = false
+                        HealthBarOutline.Visible = false
+                        HealthBar.Visible = false
+                    else
+                        ---Enemy Team
+                        BoxOutline.Visible = true
+                        Box.Visible = true
+                        HealthBarOutline.Visible = true
+                        HealthBar.Visible = true
+                    end
+
+                else
+                    BoxOutline.Visible = false
+                    Box.Visible = false
+                    HealthBarOutline.Visible = false
+                    HealthBar.Visible = false
+                end
+            else
+                BoxOutline.Visible = false
+                Box.Visible = false
+                HealthBarOutline.Visible = false
+                HealthBar.Visible = false
+            end
+        end)
+    end
+    coroutine.wrap(boxesp)()
+end
+
+game.Players.PlayerAdded:Connect(function(v)
+    local BoxOutline = Drawing.new("Square")
+    BoxOutline.Visible = false
+    BoxOutline.Color = Color3.new(0,0,0)
+    BoxOutline.Thickness = 3
+    BoxOutline.Transparency = 1
+    BoxOutline.Filled = false
+
+    local Box = Drawing.new("Square")
+    Box.Visible = false
+    Box.Color = Color3.new(1,1,1)
+    Box.Thickness = 1
+    Box.Transparency = 1
+    Box.Filled = false
+
+    local HealthBarOutline = Drawing.new("Square")
+    HealthBarOutline.Thickness = 3
+    HealthBarOutline.Filled = false
+    HealthBarOutline.Color = Color3.new(0,0,0)
+    HealthBarOutline.Transparency = 1
+    HealthBarOutline.Visible = false
+
+    local HealthBar = Drawing.new("Square")
+    HealthBar.Thickness = 1
+    HealthBar.Filled = false
+    HealthBar.Transparency = 1
+    HealthBar.Visible = false
+
+    function boxesp()
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
+                local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+
+                local RootPart = v.Character.HumanoidRootPart
+                local Head = v.Character.Head
+                local RootPosition, RootVis = worldToViewportPoint(CurrentCamera, RootPart.Position)
+                local HeadPosition = worldToViewportPoint(CurrentCamera, Head.Position + HeadOff)
+                local LegPosition = worldToViewportPoint(CurrentCamera, RootPart.Position - LegOff)
+
+                if onScreen then
+                    BoxOutline.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
+                    BoxOutline.Position = Vector2.new(RootPosition.X - BoxOutline.Size.X / 2, RootPosition.Y - BoxOutline.Size.Y / 2)
+                    BoxOutline.Visible = true
+
+                    Box.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y)
+                    Box.Position = Vector2.new(RootPosition.X - Box.Size.X / 2, RootPosition.Y - Box.Size.Y / 2)
+                    Box.Visible = true
+
+                    HealthBarOutline.Size = Vector2.new(2, HeadPosition.Y - LegPosition.Y)
+                    HealthBarOutline.Position = BoxOutline.Position - Vector2.new(6,0)
+                    HealthBarOutline.Visible = true
+
+                    HealthBar.Size = Vector2.new(2, (HeadPosition.Y - LegPosition.Y) / (game:GetService("Players")[v.Character.Name].NRPBS["MaxHealth"].Value / math.clamp(game:GetService("Players")[v.Character.Name].NRPBS["Health"].Value, 0, game:GetService("Players")[v.Character.Name].NRPBS:WaitForChild("MaxHealth").Value)))
+                    HealthBar.Position = Vector2.new(Box.Position.X - 6, Box.Position.Y + (1/HealthBar.Size.Y))
+		    HealthBar.Color = Color3.fromRGB(255 - 255 / (game:GetService("Players")[v.Character.Name].NRPBS["MaxHealth"].Value / game:GetService("Players")[v.Character.Name].NRPBS["Health"].Value), 255 / (game:GetService("Players")[v.Character.Name].NRPBS["MaxHealth"].Value / game:GetService("Players")[v.Character.Name].NRPBS["Health"].Value), 0)                    
+		    HealthBar.Visible = true
+
+                    if v.TeamColor == lplr.TeamColor then
+                        --- Our Team
+                        BoxOutline.Visible = false
+                        Box.Visible = false
+                        HealthBarOutline.Visible = false
+                        HealthBar.Visible = false
+                    else
+                        ---Enemy Team
+                        BoxOutline.Visible = true
+                        Box.Visible = true
+                        HealthBarOutline.Visible = true
+                        HealthBar.Visible = true
+                    end
+
+                else
+                    BoxOutline.Visible = false
+                    Box.Visible = false
+                    HealthBarOutline.Visible = false
+                    HealthBar.Visible = false
+                end
+            else
+                BoxOutline.Visible = false
+                Box.Visible = false
+                HealthBarOutline.Visible = false
+                HealthBar.Visible = false
+            end
+        end)
+    end
+    coroutine.wrap(boxesp)()
+end)
+    else
+        print("Toggle Off")
+    end
+end)
+
+Tab1Section:NewToggle("Add ESP Lines", "Lines", function(state)
+    if state then
+        local lplr = game.Players.LocalPlayer
+local camera = game:GetService("Workspace").CurrentCamera
+local CurrentCamera = workspace.CurrentCamera
+local worldToViewportPoint = CurrentCamera.worldToViewportPoint
+
+_G.TeamCheck = false -- Use True or False to toggle TeamCheck
+
+for i,v in pairs(game.Players:GetChildren()) do
+    local Tracer = Drawing.new("Line")
+    Tracer.Visible = false
+    Tracer.Color = Color3.new(1,1,1)
+    Tracer.Thickness = 1
+    Tracer.Transparency = 1
+
+    function lineesp()
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
+                local Vector, OnScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+
+                if OnScreen then
+                    Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
+                    Tracer.To = Vector2.new(Vector.X, Vector.Y)
+
+                    if _G.TeamCheck and v.TeamColor == lplr.TeamColor then
+                        --//Teammates
+                        Tracer.Visible = false
+                    else
+                        --//Enemies
+                        Tracer.Visible = true
+                    end
+                else
+                    Tracer.Visible = false
+                end
+            else
+                Tracer.Visible = false
+            end
+        end)
+    end
+    coroutine.wrap(lineesp)()
+end
+
+game.Players.PlayerAdded:Connect(function(v)
+    local Tracer = Drawing.new("Line")
+    Tracer.Visible = false
+    Tracer.Color = Color3.new(1,1,1)
+    Tracer.Thickness = 1
+    Tracer.Transparency = 1
+
+    function lineesp()
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then
+                local Vector, OnScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position)
+
+                if OnScreen then
+                    Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1)
+                    Tracer.To = Vector2.new(Vector.X, Vector.Y)
+
+                    if _G.TeamCheck and v.TeamColor == lplr.TeamColor then
+                        --//Teammates
+                        Tracer.Visible = false
+                    else
+                        --//Enemies
+                        Tracer.Visible = true
+                    end
+                else
+                    Tracer.Visible = false
+                end
+            else
+                Tracer.Visible = false
+            end
+        end)
+    end
+    coroutine.wrap(lineesp)()
+end)
+    else
+        print("Toggle Off")
+    end
 end)
 
 Tab2Section:NewButton("Vape","Opens Vape",function()
@@ -686,4 +1008,13 @@ end)
 Tab1Section:NewButton("FixCam", "fix camera bug on mobile", function()
 	cam.CameraType = Enum.CameraType.Fixed
 	cam.CameraType = Enum.CameraType.Custom
+end)
+
+
+Tab1Section:NewButton("Keyboard", "Opens Keyboard", function()
+loadstring(game:HttpGet("https://pastebin.com/raw/kC3dAMvt"))()
+end)
+
+Tab6Section:NewKeybind("Toggle UI", "Toggle The UI", Enum.KeyCode.G, function()
+	Gb:ToggleUI()
 end)

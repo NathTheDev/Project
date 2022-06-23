@@ -1,5 +1,5 @@
 game.StarterGui:SetCore("SendNotification", {
-    Title = Welcome";
+    Title = "Welcome";
     Text = "Welcome .. player.Name .."; -- what the text says (ofc)
     Duration = 30;
 })

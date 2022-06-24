@@ -1,10 +1,4 @@
-game.StarterGui:SetCore("SendNotification", {
-    Title = Welcome";
-    Text = "Welcome .. player.Name .."; -- what the text says (ofc)
-    Duration = 30;
-})
-wait(1)
-game.StarterGui:SetCore("SendNotification", {
+ game.StarterGui:SetCore("SendNotification", {
     Title = "Enjoy";
     Text = "Enjoy using Gamebreaker X Ray Hub!"; -- what the text says (ofc)
     Duration = 30;

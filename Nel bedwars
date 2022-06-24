@@ -1,5 +1,5 @@
 game.StarterGui:SetCore("SendNotification", {
-    Title = "Welcome";
+    Title = Welcome";
     Text = "Welcome .. player.Name .."; -- what the text says (ofc)
     Duration = 30;
 })
@@ -419,11 +419,17 @@ Tab1Section:NewToggle("AntiVoid", "Give's you a second chance to get back on lan
          end 
  end) 
   
- Tab1Section:NewColorPicker("Color", "Adjust antivoid color", Color3.fromHSV(antivoidcolor["Hue"], antivoidcolor["Sat"], antivoidcolor["Value"]), function(val) 
+ Tab1Section:NewColorPicker("Anti-Void Color", "Adjust antivoid color", Color3.fromHSV(antivoidcolor["Hue"], antivoidcolor["Sat"], antivoidcolor["Value"]), function(val) 
          if antivoidp then 
                  antivoidp.Color = (val) 
          end 
  end)
+ 
+ Tab1Section:NewSlider("Anti-Void Transparency", "Adjust antivoid transparency", 100, 0, function(val) 
+         if antivoidp then 
+                 antivoidp.Transparency = 1 - (val / 100) 
+         end 
+ end) 
  
  Tab1Section:NewToggle("Auto-Sprint", "Automatically on your sprint", function(state) 
          if state then 

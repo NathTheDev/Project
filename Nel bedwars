@@ -361,6 +361,7 @@ local Tab5Section = Tab5:NewSection("Helper - Ray Hub Add Anti-Void,Anti-Knockba
 local Tab5Section = Tab5:NewSection("Animation's - JN HH")
 local Tab6 = Window:NewTab("Settings")
 local Tab6Section = Tab6:NewSection("Toggle UI")
+local UI = Window:NewTab("UI")
 
 -- Buttons
 Tab1Section:NewToggle("CFrame", "", function(state)
@@ -1018,3 +1019,10 @@ end)
 Tab6Section:NewKeybind("Toggle UI", "Toggle The UI", Enum.KeyCode.G, function()
 	Gb:ToggleUI()
 end)
+
+local UI = UI:NewSection("Colors")
+for theme, color in pairs(colors) do
+	UI:NewColorPicker(theme, "Change your "..theme, color, function(color3)
+		kavoUi:ChangeColor(theme, color3)
+	end)
+end

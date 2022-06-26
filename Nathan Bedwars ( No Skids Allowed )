@@ -315,7 +315,7 @@ end
 
 
 
-local Gb = loadstring(game:HttpGet("https://raw.githubusercontent.com/NathTheDev/Project/main/Kavo%20UI%20Library%20(%20Backup%20)"))()
+local Gb = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
 local Window = Gb.CreateLib("Gamebreaker X Ray Hub | Bedwars", "DarkTheme")
 local entity = loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/Libraries/entityHandler.lua", true))()
 

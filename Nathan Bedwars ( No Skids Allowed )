@@ -1,4 +1,4 @@
- game.StarterGui:SetCore("SendNotification", {
+game.StarterGui:SetCore("SendNotification", {
     Title = "Enjoy";
     Text = "Enjoy using Gamebreaker X Ray Hub!"; -- what the text says (ofc)
     Duration = 30;
@@ -315,7 +315,7 @@ end
 
 
 
-local Gb = loadstring(game:HttpGet("https://pastebin.com/raw/vff1bQ9F"))()
+local Gb = loadstring(game:HttpGet("https://raw.githubusercontent.com/vqfx/SytroNight4ROBLOX/main/libraries/kavo.lua"))() 
 local Window = Gb.CreateLib("Gamebreaker X Ray Hub | Bedwars", "DarkTheme")
 local entity = loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/Libraries/entityHandler.lua", true))()
 
@@ -909,10 +909,3 @@ end)
 Tab6Section:NewKeybind("Toggle UI", "Toggle The UI", Enum.KeyCode.G, function()
 	Gb:ToggleUI()
 end)
-
-local UI = UI:NewSection("Colors")
-for theme, color in pairs(colors) do
-	UI:NewColorPicker(theme, "Change your "..theme, color, function(color3)
-		kavoUi:ChangeColor(theme, color3)
-	end)
-end

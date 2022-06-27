@@ -914,6 +914,9 @@ Tab6Section:NewKeybind("Toggle UI", "Toggle The UI", Enum.KeyCode.G, function()
 	Gb:ToggleUI()
 end)
 
+runcode(function()
+	local wall = nil
+	local spiderspeed = {["Value"] = 0}
 PlrMisc:NewToggle("Climb On Wall", "Allows you to climb up a wall", function(state)
 		if state then
 			BindToStepped("Climb On Wall", 1, function()
@@ -934,7 +937,6 @@ PlrMisc:NewToggle("Climb On Wall", "Allows you to climb up a wall", function(sta
 			UnbindFromStepped("Climb On Wall")
 		end
 	end)
-	PlrMisc:NewSlider("Adjust Climb on wall speed", "Adjust PlrMisc speed", 100, 0, function(val) -- 500 (MaxValue) | 0 (MinValue)
-		PlrMiscspeed["Value"] = val
+	PlrMisc:NewSlider("Climb on wall speed", "Adjust PlrMisc speed", 100, 0, function(val) -- 500 (MaxValue) | 0 (MinValue)
+		spiderspeed["Value"] = val
 	end)
-end)

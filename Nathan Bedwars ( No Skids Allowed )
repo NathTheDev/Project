@@ -359,13 +359,17 @@ local Tab5 = Window:NewTab("Credits")
 local Tab5Section = Tab5:NewSection("Owner - Gamebreaker")
 local Tab5Section = Tab5:NewSection("Helper - Ray Hub Add Anti-Void,Anti-Knockback,Reach")
 local Tab5Section = Tab5:NewSection("Animation's - JN HH")
+local Tab5Section = Tab5:NewSection("WaterMark - Vamp")
 local Tab6 = Window:NewTab("Settings")
 local Tab6Section = Tab6:NewSection("Toggle UI")
-local Tab6 = Window:NewTab("World Misc")
+local Tab7 = Window:NewTab("World Misc")
 local Void = Tab6:NewSection("Anti-Void")
+local Tab8 = Window:NewTab("Player Misc")
+local PlrMisc = Tab8:NewSection("Main Misc")
+
 
 -- Buttons
-Tab1Section:NewToggle("CFrame", "", function(state)
+Tab1Section:NewToggle("Speed", "", function(state)
 	if state then
 		BindToStepped("CFrameWalkSpeed", 1, function(time, delta)
 			if entity.isAlive then
@@ -383,7 +387,7 @@ Tab1Section:NewToggle("CFrame", "", function(state)
 	end
 end)
 
-Tab1Section:NewSlider("Speed 1-42", "Adjust CFrame speed", 42, 1, function(s)
+Tab1Section:NewSlider("Adjust Speed 1-42", "Adjust CFrame speed", 42, 1, function(s)
 	speedval["Value"] = s
 end)
 
@@ -908,4 +912,29 @@ end)
 
 Tab6Section:NewKeybind("Toggle UI", "Toggle The UI", Enum.KeyCode.G, function()
 	Gb:ToggleUI()
+end)
+
+PlrMisc:NewToggle("Climb On Wall", "Allows you to climb up a wall", function(state)
+		if state then
+			BindToStepped("Climb On Wall", 1, function()
+				local raycastparameters = RaycastParams.new()
+				raycastparameters.FilterDescendantsInstances = {lplr.Character}
+				local ray = workspace:Raycast(lplr.Character.Humanoid.LeftLeg.Position, lplr.Character.HumanoidRootPart.CFrame.LookVector * 1.3, raycastparameters)
+
+				wall = ray and ray.Instance or nil
+				if wall then
+					lplr.Character.HumanoidRootPart.Velocity = Vector3.new(lplr.Character.HumanoidRootPart.Velocity.X or 0, PlrMiscspeed["Value"], lplr.Character.HumanoidRootPart.Velocity.Z or 0)
+
+					if lplr.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Climbing then
+						lplr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Freefall)
+					end
+				end
+			end)
+		else
+			UnbindFromStepped("Climb On Wall")
+		end
+	end)
+	PlrMisc:NewSlider("Adjust Climb on wall speed", "Adjust PlrMisc speed", 100, 0, function(val) -- 500 (MaxValue) | 0 (MinValue)
+		PlrMiscspeed["Value"] = val
+	end)
 end)

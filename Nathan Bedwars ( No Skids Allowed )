@@ -1,12 +1,72 @@
+
+
 game.StarterGui:SetCore("SendNotification", {
     Title = "Enjoy";
     Text = "Enjoy using Gamebreaker X Ray Hub!"; -- what the text says (ofc)
     Duration = 30;
 })
+wait(1)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "To Skid's";
+    Text = "If you're skid's well no luck for you because this is secure script"; -- what the text says (ofc)
+    Duration = 30;
+})
+wait(5)
+local GbXRayHubWatermark = Instance.new("ScreenGui")
+local TextLabel = Instance.new("TextButton")
+local UIGradient = Instance.new("UIGradient")
+local TextLabel_2 = Instance.new("TextLabel")
+local UIGradient_2 = Instance.new("UIGradient")
+local UITextSizeConstraint = Instance.new("UITextSizeConstraint")
+local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint")
 
+GbXRayHubWatermark.Name = "GbXRayHubWatermark"
+GbXRayHubWatermark.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+GbXRayHubWatermark.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+GbXRayHubWatermark.ResetOnSpawn = false
 
+TextLabel.Parent = GbXRayHubWatermark
+TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.BackgroundTransparency = 1.000
+TextLabel.BorderSizePixel = 0
+TextLabel.Position = UDim2.new(-0.000772226602, 0, 0.0343558267, 0)
+TextLabel.Size = UDim2.new(0.170134634, 0, 0.0700389072, 0)
+TextLabel.Font = Enum.Font.GothamBold
+TextLabel.Text = "Gamebreaker X Ray Hub"
+TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel.TextScaled = true
+TextLabel.TextSize = 28.000
+TextLabel.TextWrapped = true
+TextLabel.TextXAlignment = Enum.TextXAlignment.Left
+TextLabel.MouseButton1Down:Connect(function()
+	warn("NO SKIDS ALLOWED! IF YOU'RE A SKID GET OUT!!")
+end)
 
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(126, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(209, 0, 0))}
+UIGradient.Parent = TextLabel
 
+TextLabel_2.Parent = TextLabel
+TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.BackgroundTransparency = 1.000
+TextLabel_2.BorderSizePixel = 0
+TextLabel_2.Position = UDim2.new(-0.000772226602, 0, 0.67410934, 0)
+TextLabel_2.Size = UDim2.new(1, 0, 1, 0)
+TextLabel_2.Font = Enum.Font.GothamBold
+TextLabel_2.Text = "V1.3"
+TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255)
+TextLabel_2.TextScaled = true
+TextLabel_2.TextSize = 24.000
+TextLabel_2.TextWrapped = true
+TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
+
+UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(126, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(209, 0, 0))}
+UIGradient_2.Parent = TextLabel_2
+
+UITextSizeConstraint.Parent = TextLabel_2
+UITextSizeConstraint.MaxTextSize = 24
+
+UITextSizeConstraint_2.Parent = TextLabel
+UITextSizeConstraint_2.MaxTextSize = 27
 
 local players = game:GetService("Players")
 local lplr = players.LocalPlayer
@@ -364,8 +424,12 @@ local Tab6 = Window:NewTab("Settings")
 local Tab6Section = Tab6:NewSection("Toggle UI")
 local Tab7 = Window:NewTab("World Misc")
 local Void = Tab7:NewSection("Anti-Void")
+local Tab8 = Window:NewTab("Player Misc")
+local Spider = Tab8:NewSection("Spider")
+local UI = Window:NewTab("Ui")
 
--- Buttons
+--Scripts
+
 Tab1Section:NewToggle("Speed", "", function(state)
 	if state then
 		BindToStepped("CFrameWalkSpeed", 1, function(time, delta)
@@ -422,7 +486,7 @@ Void:NewToggle("AntiVoid", "Give's you a second chance to get back on land", fun
          end 
  end)
  
- Void:NewSlider("Anti-Void Transparency", "Adjust antivoid transparency", 100, 0, function(val) 
+ Void:NewSlider("Void Color Transparency", "Adjust antivoid transparency", 100, 0, function(val) 
          if antivoidp then 
                  antivoidp.Transparency = 1 - (val / 100) 
          end 
@@ -556,15 +620,6 @@ end
     end
 end)
 
-
-Tab1Section:NewButton("Infinite Jump", "Opens Infinite Jump", function()
-    local InfiniteJumpEnabled = true
-    game:GetService("UserInputService").JumpRequest:connect(function()
-	    if InfiniteJumpEnabled then
-		    game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
-	   end
-    end)
-end)
 
 Tab1Section:NewToggle("No Fall Damage", "Opens No Fall Damage", function(callback)
     local nofall = true
@@ -910,3 +965,48 @@ end)
 Tab6Section:NewKeybind("Toggle UI", "Toggle The UI", Enum.KeyCode.G, function()
 	Gb:ToggleUI()
 end)
+
+runcode(function()
+	local wall = nil
+	local spiderspeed = {["Value"] = 0}
+	local Nr = Tab8:NewSection("The Spider will allow you to climb up walls")
+	Spider:NewToggle("Spider", "Allows you to climb up a wall", function(state)
+		if state then
+			BindToStepped("Spider", 1, function()
+				local raycastparameters = RaycastParams.new()
+				raycastparameters.FilterDescendantsInstances = {lplr.Character}
+				local ray = workspace:Raycast(lplr.Character.Humanoid.LeftLeg.Position, lplr.Character.HumanoidRootPart.CFrame.LookVector * 1.3, raycastparameters)
+
+				wall = ray and ray.Instance or nil
+				if wall then
+					lplr.Character.HumanoidRootPart.Velocity = Vector3.new(lplr.Character.HumanoidRootPart.Velocity.X or 0, spiderspeed["Value"], lplr.Character.HumanoidRootPart.Velocity.Z or 0)
+
+					if lplr.Character.Humanoid:GetState() ~= Enum.HumanoidStateType.Climbing then
+						lplr.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Freefall)
+					end
+				end
+			end)
+		else
+			UnbindFromStepped("Spider")
+		end
+	end)
+	Spider:NewSlider("Spider Climb Speed 1-100", "Adjust spider speed", 100, 0, function(val) -- 500 (MaxValue) | 0 (MinValue)
+		spiderspeed["Value"] = val
+	end)
+end)
+
+Spider:NewButton("Infinite Jump", "Activate's Infinite Jump", function()
+    local InfiniteJumpEnabled = true
+    game:GetService("UserInputService").JumpRequest:connect(function()
+	    if InfiniteJumpEnabled then
+		    game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
+	   end
+    end)
+end)
+
+local UI = UI:NewSection("Colors")
+for theme, color in pairs(colors) do
+	UI:NewColorPicker(theme, "Change your "..theme, color, function(color3)
+		Gb:ChangeColor(theme, color3)
+	end)
+end

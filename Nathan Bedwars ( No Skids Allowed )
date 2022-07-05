@@ -2,7 +2,7 @@
 
 game.StarterGui:SetCore("SendNotification", {
     Title = "Enjoy";
-    Text = "Enjoy using Gamebreaker X Ray Hub!"; -- what the text says (ofc)
+    Text = "Enjoy using Gamebreaker X Dark Hub!"; -- what the text says (ofc)
     Duration = 30;
 })
 wait(1)
@@ -32,7 +32,7 @@ TextLabel.BorderSizePixel = 0
 TextLabel.Position = UDim2.new(-0.000772226602, 0, 0.0343558267, 0)
 TextLabel.Size = UDim2.new(0.170134634, 0, 0.0700389072, 0)
 TextLabel.Font = Enum.Font.GothamBold
-TextLabel.Text = "Gamebreaker X Ray Hub"
+TextLabel.Text = "Gamebreaker X Dark Hub"
 TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
 TextLabel.TextScaled = true
 TextLabel.TextSize = 28.000
@@ -42,7 +42,7 @@ TextLabel.MouseButton1Down:Connect(function()
 	warn("NO SKIDS ALLOWED! IF YOU'RE A SKID GET OUT!!")
 end)
 
-UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(126, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(209, 0, 0))}
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(20, 3, 3)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 0, 0))}
 UIGradient.Parent = TextLabel
 
 TextLabel_2.Parent = TextLabel
@@ -59,7 +59,7 @@ TextLabel_2.TextSize = 24.000
 TextLabel_2.TextWrapped = true
 TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left
 
-UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(126, 0, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(209, 0, 0))}
+UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(20, 3, 3)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 0, 0))}
 UIGradient_2.Parent = TextLabel_2
 
 UITextSizeConstraint.Parent = TextLabel_2
@@ -376,7 +376,7 @@ end
 
 
 local Gb = loadstring(game:HttpGet("https://raw.githubusercontent.com/vqfx/SytroNight4ROBLOX/main/libraries/kavo.lua"))() 
-local Window = Gb.CreateLib("Gamebreaker X Ray Hub | Bedwars", "DarkTheme")
+local Window = Gb.CreateLib("Gamebreaker X Dark Hub | Bedwars", "Serpent")
 local entity = loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/Libraries/entityHandler.lua", true))()
 
 do
@@ -413,22 +413,48 @@ local Tab1 = Window:NewTab("Main")
 local Tab1Section = Tab1:NewSection("Main Script's")
 local Tab2 = Window:NewTab("Other Scripts")
 local Tab2Section = Tab2:NewSection("Other Scripts")
-local Tab4 = Window:NewTab("Misc")
+local Tab4 = Window:NewTab("Animation")
 local Tab4Section = Tab4 :NewSection("Filtering Enabled ( FE )")
+local Misc = Window:NewTab("Misc")
+local MiscSection = Misc:NewSection("Misc")
 local Tab5 = Window:NewTab("Credits")
-local Tab5Section = Tab5:NewSection("Owner - Gamebreaker")
-local Tab5Section = Tab5:NewSection("Helper - Ray Hub Add Anti-Void,Anti-Knockback,Reach")
-local Tab5Section = Tab5:NewSection("Animation's - JN HH")
-local Tab5Section = Tab5:NewSection("WaterMark - Vamp")
+local Credits = Tab5:NewSection("Credits")
 local Tab6 = Window:NewTab("Settings")
 local Tab6Section = Tab6:NewSection("Toggle UI")
 local Tab7 = Window:NewTab("World Misc")
 local Void = Tab7:NewSection("Anti-Void")
 local Tab8 = Window:NewTab("Player Misc")
 local Spider = Tab8:NewSection("Spider")
-local UI = Window:NewTab("Ui")
+local Update = Window:NewTab("Update Log's")
+local SectionUpdate = Update:NewSection("Latest Update 7/4/22")
 
 --Scripts
+
+Credits:NewLabel("UI: Kavo Library")
+Credits:NewLabel("Dark Hub: Infinite Jump")
+Credits:NewLabel("Gamebreaker: Anti-Knockback")
+Credits:NewLabel("Gamebreaker: Speed")
+Credits:NewLabel("Moerii: Kill-Aura")
+Credits:NewLabel("Moerii: Bednuker ( Still Not Fixed Lol )")
+Credits:NewLabel("Dark Hub: Spider")
+Credits:NewLabel("JN HH: Animation's")
+Credits:NewLabel("Gamebreaker and Dark Hub: Anti-Void")
+Credits:NewLabel("Special thanks to FelipeAce: For Suggesting Anti-Void")
+Credits:NewLabel("Special thanks to FelipeAce: For Supporting Gamebreaker Team")
+
+SectionUpdate:NewLabel("We Added")
+SectionUpdate:NewLabel("Spider")
+SectionUpdate:NewLabel("Toggle UI Using Keybind")
+SectionUpdate:NewLabel("Theme Updated!")
+SectionUpdate:NewLabel("Old Theme : Dark")
+SectionUpdate:NewLabel("New Theme : Serpent")
+SectionUpdate:NewLabel("Next Update Were Gonna Add")
+SectionUpdate:NewLabel("Fully Customizable Theme")
+SectionUpdate:NewLabel("Auto-Report")
+SectionUpdate:NewLabel("Auto-BedDefense")
+SectionUpdate:NewLabel("Auto-Bridge Using Keybind")
+SectionUpdate:NewLabel("Use Keyboard Script In Misc Section!")
+
 
 Tab1Section:NewToggle("Speed", "", function(state)
 	if state then
@@ -952,17 +978,17 @@ Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=782846423"
 end)
 
 
-Tab1Section:NewButton("FixCam", "fix camera bug on mobile", function()
+MiscSection:NewButton("FixCam", "fix camera bug on mobile", function()
 	cam.CameraType = Enum.CameraType.Fixed
 	cam.CameraType = Enum.CameraType.Custom
 end)
 
 
-Tab1Section:NewButton("Keyboard", "Opens Keyboard", function()
+MiscSection:NewButton("Keyboard", "Opens Keyboard", function()
 loadstring(game:HttpGet("https://pastebin.com/raw/kC3dAMvt"))()
 end)
 
-Tab6Section:NewKeybind("Toggle UI", "Toggle The UI", Enum.KeyCode.G, function()
+Tab6Section:NewKeybind("Toggle UI", "Toggle The UI", Enum.KeyCode.R, function()
 	Gb:ToggleUI()
 end)
 
@@ -1003,10 +1029,3 @@ Spider:NewButton("Infinite Jump", "Activate's Infinite Jump", function()
 	   end
     end)
 end)
-
-local UI = UI:NewSection("Colors")
-for theme, color in pairs(colors) do
-	UI:NewColorPicker(theme, "Change your "..theme, color, function(color3)
-		Gb:ChangeColor(theme, color3)
-	end)
-end

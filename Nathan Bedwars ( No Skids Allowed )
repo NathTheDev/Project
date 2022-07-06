@@ -1,5 +1,3 @@
-
-
 game.StarterGui:SetCore("SendNotification", {
     Title = "Enjoy";
     Text = "Enjoy using Gamebreaker X Dark Hub!"; -- what the text says (ofc)
@@ -427,6 +425,8 @@ local Tab8 = Window:NewTab("Player Misc")
 local Spider = Tab8:NewSection("Spider")
 local Update = Window:NewTab("Update Log's")
 local SectionUpdate = Update:NewSection("Latest Update 7/4/22")
+local Tab9 = Window:NewTab("Troll")
+local Tab9section = Tab9:NewSection("Chat Spammer")
 
 --Scripts
 
@@ -1028,4 +1028,15 @@ Spider:NewButton("Infinite Jump", "Activate's Infinite Jump", function()
 		    game:GetService"Players".LocalPlayer.Character:FindFirstChildOfClass'Humanoid':ChangeState("Jumping")
 	   end
     end)
+end)
+
+Tab9section:NewToggle("Spam You're Team is Weak", "ayo", function(state)
+    if state then        
+while true do wait(0) 
+
+local A_1 = "You're team is weak" local A_2 = "All" 
+local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2) end
+    else
+        print("Toggle Off")
+    end
 end)

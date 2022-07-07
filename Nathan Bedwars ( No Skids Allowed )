@@ -426,7 +426,7 @@ local Spider = Tab8:NewSection("Spider")
 local Update = Window:NewTab("Update Log's")
 local SectionUpdate = Update:NewSection("Latest Update 7/4/22")
 local Tab9 = Window:NewTab("Troll")
-local Tab9section = Tab9:NewSection("Chat Spammer")
+local Tab9section = Tab9:NewSection("Once you turn it on you cant turn it off")
 
 --Scripts
 
@@ -1030,13 +1030,119 @@ Spider:NewButton("Infinite Jump", "Activate's Infinite Jump", function()
     end)
 end)
 
-Tab9section:NewToggle("Spam You're Team is Weak", "ayo", function(state)
-    if state then        
-while true do wait(0) 
+Tab9section:NewButton("Annoy Player's", "Activate's Infinite Jump", function()
+    local choosePlayer = false --set true if you want to insult one person only
+local chosenPlayer = "" --if chosePlayer = true, type playername in quotes
 
-local A_1 = "You're team is weak" local A_2 = "All" 
-local Event = game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest Event:FireServer(A_1, A_2) end
-    else
-        print("Toggle Off")
-    end
+
+
+local Taunts = { --add as many as you wish
+  "You're bad at the game bro.",
+  "I'm your dad so if you try to talk to me you're stupid.",
+  "I dont talk Nubs Like you.",
+  "Ez.",
+  "kid.",
+  "Shutup.",
+  "SHUTUP NOOB.",
+  "L.",
+  "bozo.",
+  "All you do is the same thing.",
+  "L Bozo.",
+  "I dont talk to noobs.",
+  "Get OUT.",
+  "NuB.",
+  "Eat batteries.",
+  ".. Get Rekt.",
+  "Reported.",
+  "Lol noob",
+  "get RKT.",
+  "Um.",
+  "Lol",
+  "Stop.",
+  "beggar",
+  "Ez Nubie",
+  "Sub to JN HH Gaming",
+  "lol bozo",
+  "Kid.",
+  "Stop being dumb.",
+  "Why are you talking to me?",
+  "Bozo Crying?",
+  "Get Out from here.",
+  "Get out.",
+  "why are you so bad?",
+  "...................you bad ..................",
+  "I think you're stupid dude it's obvious.",
+  "You're pathetic.",
+  "Why are you responding to my chat?",
+  "LOL",
+  "You're not cool.",
+  "EAT BLEACH CRACKERS NOOB.",
+  "You're kidding me.",
+  "DUMB.",
+  "STUPID.",
+  "Your Mom Under My Bed Sheet.",
+  "I don't bully people.",
+  "I aim to be the most highly targeted person in this server.",
+  "Your messages aren't even being taken into consideration.",
+  "I don't even know what you're saying.",
+  "Dude you are so bad...",
+  "Stop now.",
+  "Go away.",
+  "Why you so bad in this game?",
+  "What's going on?",
+  "You're salty enough to season my food.",
+  "You're wasting time.",
+  "You need to stop.",
+  "Bruh you are so bad.",
+  "Lame.",
+  "Stop playing ROBLOX Because you are bad",
+  "This is hilarious",
+  "Your reaction is exactly what I wanted to happen",
+  "Turn off your computer",
+  "I am smart",
+  "I HAVE YOUR MOM",
+  "Roblox will delete your account tommorow.",
+  "I contacted ROBLOX and told them about you",
+  "I work at ROBLOX i'll be banning you soon.",
+  "Gamebreaker on top!",
+  "The game doesn't matter",
+  "Skills dont matter",
+  "I'll be telling the owner of the game.",
+  "What you're doing isnt gonna work.",
+  "It's not working dude.",
+  "Stop trying.",
+  "I think you need to reconsider your actions.",
+  "Tell your mom to stop dude.",
+  "Why are you talking to your dad bro?.",
+  "Eat your graphics card.",
+  "I bet you bought your pc from walmart.",
+  "Your PC sucks.",
+  "NOOOOOOOOOB.",
+  
+}
+
+local Remote = game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest
+
+local function Insult()
+   local players = game.Players:GetChildren()
+   local howManyPlayers = #players
+   
+   local ran = math.random(1,howManyPlayers)
+   local chosenOne = players[ran]
+   local chance = math.random(1,20)
+   
+   if choosePlayer == true then
+       Remote:FireServer(chosenPlayer.." " ..Taunts[math.random(1,#Taunts)],"All")
+   elseif chance <= 5 then
+       Remote:FireServer(chosenOne.Name.." " ..Taunts[math.random(1,#Taunts)],"All")
+   else
+       Remote:FireServer(Taunts[math.random(1,#Taunts)],"All")
+   end
+end
+   
+local randTime = math.random(5,15)
+
+while true and wait(randTime) do
+   Insult()
+end
 end)

@@ -437,8 +437,6 @@ game.StarterGui:SetCore("SendNotification", {
  local Tab9section = Tab9:NewSection("Once you turn it on you cant turn it off") 
   
  --Scripts 
- 
- Tab1Section:NewLabel("Welcome ".. player.Name"")
   
  Credits:NewLabel("UI: Kavo Library") 
  Credits:NewLabel("Dark Hub: Infinite Jump") 
@@ -1188,10 +1186,3 @@ end)
  end 
  end)
  
- local Tab6Color = Tab6:NewSection("Customize UI") 
- Tab6Color:NewLabel("Colors") 
- for theme, color in pairs(themes) do
-    Tab6Color:NewColorPicker(theme, "Change your "..theme, color, function(color3)
-        Gb:ChangeColor(theme, color3)
-    end)
-end

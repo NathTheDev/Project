@@ -432,7 +432,7 @@ game.StarterGui:SetCore("SendNotification", {
  local Tab8 = Window:NewTab("Player Misc") 
  local Spider = Tab8:NewSection("Spider") 
  local Update = Window:NewTab("Update Log's") 
- local SectionUpdate = Update:NewSection("Latest Update 7/4/22") 
+ local SectionUpdate = Update:NewSection("Latest Update 7/8/22") 
  local Tab9 = Window:NewTab("Troll") 
  local Tab9section = Tab9:NewSection("Once you turn it on you cant turn it off") 
   
@@ -453,13 +453,16 @@ game.StarterGui:SetCore("SendNotification", {
  Credits:NewLabel("Special thanks to SVamp: For Letting me use his ( other ) codes") 
   
  SectionUpdate:NewLabel("We Added") 
- SectionUpdate:NewLabel("Spider") 
+ SectionUpdate:NewLabel("Spider ( Player Misc )") 
  SectionUpdate:NewLabel("Toggle UI Using Keybind") 
+ SectionUpdate:NewLabel("Fully Customizable Theme") 
+ SectionUpdate:NewLabel("Full Bright ( Misc Section )") 
+ SectionUpdate:NewLabel("Bypass Anti-Cheat ( Misc Section )") 
+ SectionUpdate:NewLabel("Damage Return ( Main Section )") 
  SectionUpdate:NewLabel("Theme Updated!") 
  SectionUpdate:NewLabel("Old Theme : Dark") 
  SectionUpdate:NewLabel("New Theme : Serpent") 
  SectionUpdate:NewLabel("Next Update Were Gonna Add") 
- SectionUpdate:NewLabel("Fully Customizable Theme") 
  SectionUpdate:NewLabel("Auto-Report") 
  SectionUpdate:NewLabel("Auto-BedDefense") 
  SectionUpdate:NewLabel("Auto-Bridge Using Keybind") 
@@ -597,64 +600,62 @@ game.StarterGui:SetCore("SendNotification", {
           reachval["Value"] = val  
   end) 
   
- Tab1Section:NewToggle("Bednuker ( Fixed )", "Fix Bednuker", function(state) 
-     if state then 
-         function getclosebed() 
-     for i,v in pairs(game:GetService("Workspace").Map.Blocks:GetChildren()) do 
-         if v.Name == "bed" and v:FindFirstChild("Covers") then 
-             local magcheck = (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Covers.Position).Magnitude 
-             if magcheck <= 45 then 
-                 return v 
-             end 
-         end 
-     end 
- end 
-  
- local added 
- function getanumber() 
-     added = 0 
-     for i,v in pairs(game.Workspace.Map.Blocks:GetChildren()) do 
-         local target = getclosebed() 
-         if target ~= nil and v.Position then 
-             if target.Position.X == v.Position.X and target.Position.Z == v.Position.Z then 
-                 if v.Position.Y > target.Position.Y and v.Position.Y - target.Position.Y < 16.5 then 
-                     added = added + 1 
-                 end 
-                 if v.Position.Y < target.Position.Y and v.Position.Y - target.Position.Y < 16.5 then 
-                     added = added - 1 
-                 end 
-             end 
-         end 
-     end 
-     return added 
- end 
-  
- function hitblock(X,Y,Z) 
-     local args = { 
-         [1] = { 
-             ["blockRef"] = { 
-                 ["blockPosition"] = Vector3.new(X/3,Y/3,Z/3) 
-             }, 
-             ["hitPosition"] = Vector3.new(X/3,Y/3,Z/3), 
-             ["hitNormal"] = Vector3.new(X/3,Y/3,Z/3) 
-         } 
-     } 
-  
-     game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged.DamageBlock:InvokeServer(unpack(args)) 
- end 
-  
- local function getItem(itemName) 
-         for i5, v5 in pairs(getinv(lplr)["items"]) do 
-                 if v5["itemType"] == itemName then 
-                         return v5, i5 
-                 end 
-         end 
-         return nil 
- end 
-     else 
-         print("Toggle Off") 
-     end 
- end) 
+ Tab1Section:NewToggle("Damage Return", "Return Damage From Player", function(state)
+    if state then
+        
+local TS = game:GetService("TweenService")
+local Tinfo = TweenInfo.new(0.3, Enum.EasingStyle.Quint, Enum.EasingDirection.InOut)
+
+local DamageEvent = game.ReplicatedStorage.DamageEvent --You can remove this line since it is actually unnecessary 
+local DamageBoard = game.ReplicatedStorage.DamageBoard
+
+local Red = Color3.fromRGB(255, 0, 0)
+local Green = Color3.fromRGB(95,111,64)
+
+
+
+game.Players.PlayerAdded:Connect(function(plr)
+	plr.CharacterAdded:Connect(function(char)
+		
+		local hum = char:WaitForChild("Humanoid")
+		local humH = hum.Health
+		
+		hum.HealthChanged:Connect(function(Health)
+			if Health < humH and Health > 0 then
+				
+				local Damage = math.floor(humH - Health)
+				print(Damage.." Damage was taken")
+				
+				local BoardClone = DamageBoard:Clone()
+				BoardClone:FindFirstChild("Damage").Text = Damage
+				
+				local maxH = hum.MaxHealth
+				BoardClone.Damage.TextColor3 = Green:lerp(Red, Damage / maxH)
+				
+				
+				BoardClone.Parent = char.HumanoidRootPart
+				BoardClone.Damage:TweenSize(UDim2.new(1,0,1,0), "InOut", "Quint", 0.3)
+								
+				wait(0.3)
+				
+				local UIupTween = TS:Create(BoardClone, Tinfo, {StudsOffset = BoardClone.StudsOffset + Vector3.new(0,1,0)})
+				local textFade = TS:Create(BoardClone.Damage, Tinfo, {TextTransparency = 1})
+								
+				UIupTween:Play()
+				textFade:Play()
+				
+				game:GetService("Debris"):AddItem(BoardClone, 0.5)
+			end
+			humH = hum.Health
+		end)
+		
+	end)
+end)
+    else
+        print("Toggle Off")
+    end
+end)
+ 
   
   
  Tab1Section:NewToggle("No Fall Damage", "Opens No Fall Damage", function(callback) 
@@ -997,6 +998,37 @@ game.StarterGui:SetCore("SendNotification", {
  MiscSection:NewButton("Keyboard", "Opens Keyboard", function() 
  loadstring(game:HttpGet("https://pastebin.com/raw/kC3dAMvt"))() 
  end) 
+ 
+ MiscSection:NewButton("Fullbright", "Give's your eye special ability", function(state)
+    local Light = game:GetService("Lighting")
+
+function dofullbright()
+Light.Ambient = Color3.new(1, 1, 1)
+Light.ColorShift_Bottom = Color3.new(1, 1, 1)
+Light.ColorShift_Top = Color3.new(1, 1, 1)
+end
+
+dofullbright()
+
+Light.LightingChanged:Connect(dofullbright)local Light = game:GetService("Lighting")
+
+function dofullbright()
+Light.Ambient = Color3.new(1, 1, 1)
+Light.ColorShift_Bottom = Color3.new(1, 1, 1)
+Light.ColorShift_Top = Color3.new(1, 1, 1)
+end
+
+dofullbright()
+
+Light.LightingChanged:Connect(dofullbright)
+
+MiscSection:NewButton("Anti-Cheat", "Rrmoves some anticheats", function(state)
+    shared.enabled = w
+game:GetService("RunService").heartbeat:connect(function()
+if not shared.enabled then return end
+game:GetService("ReplicatedStorage").rbxts_include.node_modules.net.out._NetManaged.GroundHit:FireServer(workspace.Map.Blocks,1645488277.345853)
+wait()
+end)
   
  Tab6Section:NewKeybind("Toggle UI", "Toggle The UI", Enum.KeyCode.R, function() 
          Gb:ToggleUI() 

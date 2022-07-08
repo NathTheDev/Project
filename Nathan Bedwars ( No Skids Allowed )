@@ -446,11 +446,11 @@ game.StarterGui:SetCore("SendNotification", {
  Credits:NewLabel("Gamebreaker: Speed") 
  Credits:NewLabel("Moerii: Kill-Aura") 
  Credits:NewLabel("Moerii: Bednuker ( Still Not Fixed Lol )") 
- Credits:NewLabel("Dark Hub: Spider") 
+ Credits:NewLabel("SVamp: Spider") 
  Credits:NewLabel("JN HH: Animation's") 
  Credits:NewLabel("Gamebreaker and Dark Hub: Anti-Void") 
  Credits:NewLabel("Special thanks to FelipeAce: For Suggesting Anti-Void") 
- Credits:NewLabel("Special thanks to FelipeAce: For Supporting Gamebreaker Team") 
+ Credits:NewLabel("Special thanks to SVamp: For Letting me use his ( other ) codes") 
   
  SectionUpdate:NewLabel("We Added") 
  SectionUpdate:NewLabel("Spider") 

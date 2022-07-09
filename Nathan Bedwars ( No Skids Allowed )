@@ -18,14 +18,14 @@ local GbXRayHubWatermark = Instance.new("ScreenGui")
  TextLabel.Position = UDim2.new(-0.000772226602, 0, 0.0343558267, 0) 
  TextLabel.Size = UDim2.new(0.170134634, 0, 0.0700389072, 0) 
  TextLabel.Font = Enum.Font.GothamBold 
- TextLabel.Text = "Gamebreaker X Dark Hub" 
+ TextLabel.Text = "Gamebreaker" 
  TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255) 
  TextLabel.TextScaled = true 
  TextLabel.TextSize = 28.000 
  TextLabel.TextWrapped = true 
  TextLabel.TextXAlignment = Enum.TextXAlignment.Left 
  TextLabel.MouseButton1Down:Connect(function() 
-         Gb:ToggleUI()
+    game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.R,false,game) -- Press E key.
  end) 
   
  UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(20, 3, 3)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 0, 0))} 
@@ -38,7 +38,7 @@ local GbXRayHubWatermark = Instance.new("ScreenGui")
  TextLabel_2.Position = UDim2.new(-0.000772226602, 0, 0.67410934, 0) 
  TextLabel_2.Size = UDim2.new(1, 0, 1, 0) 
  TextLabel_2.Font = Enum.Font.GothamBold 
- TextLabel_2.Text = "V1.3" 
+ TextLabel_2.Text = "V1.4" 
  TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255) 
  TextLabel_2.TextScaled = true 
  TextLabel_2.TextSize = 24.000 
@@ -362,7 +362,7 @@ local GbXRayHubWatermark = Instance.new("ScreenGui")
   
   
  local Gb = loadstring(game:HttpGet("https://raw.githubusercontent.com/vqfx/SytroNight4ROBLOX/main/libraries/kavo.lua"))()  
- local Window = Gb.CreateLib("Gamebreaker | Bedwars⚡️ | V1.3", "Serpent") 
+ local Window = Gb.CreateLib("Gamebreaker | Bedwars⚡️ | V1.4", "Serpent") 
  local entity = loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/Libraries/entityHandler.lua", true))() 
   
  do 

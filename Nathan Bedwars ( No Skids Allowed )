@@ -472,7 +472,7 @@ local GbXRayHubWatermark = Instance.new("ScreenGui")
          end 
  end) 
   
- Tab1Section:NewSlider("Adjust Speed 1-42", "Adjust CFrame speed", 42, 1, function(s) 
+ Tab1Section:NewSlider("Adjust Speed 1-27", "Adjust CFrame speed", 27, 1, function(s) 
          speedval["Value"] = s 
  end) 
   
@@ -551,7 +551,7 @@ local GbXRayHubWatermark = Instance.new("ScreenGui")
          end 
  end) 
   
- Tab1Section:NewSlider("Distance 1-20", "Increase killaura distance", 20, 1, function(val) 
+ Tab1Section:NewSlider("Distance 1-50", "Increase killaura distance", 50, 1, function(val) 
          DistVal["Value"] = val 
  end) 
   

@@ -1,16 +1,4 @@
-game.StarterGui:SetCore("SendNotification", { 
-     Title = "Enjoy"; 
-     Text = "Enjoy using Gamebreaker X Dark Hub!"; -- what the text says (ofc) 
-     Duration = 30; 
- }) 
- wait(1) 
- game.StarterGui:SetCore("SendNotification", { 
-     Title = "To Skid's"; 
-     Text = "If you're skid's well no luck for you because this is secure script"; -- what the text says (ofc) 
-     Duration = 30; 
- }) 
- wait(5) 
- local GbXRayHubWatermark = Instance.new("ScreenGui") 
+local GbXRayHubWatermark = Instance.new("ScreenGui") 
  local TextLabel = Instance.new("TextButton") 
  local UIGradient = Instance.new("UIGradient") 
  local TextLabel_2 = Instance.new("TextLabel") 
@@ -37,7 +25,7 @@ game.StarterGui:SetCore("SendNotification", {
  TextLabel.TextWrapped = true 
  TextLabel.TextXAlignment = Enum.TextXAlignment.Left 
  TextLabel.MouseButton1Down:Connect(function() 
-         print("NO SKIDS ALLOWED! IF YOU'RE A SKID GET OUT!!") 
+         Gb:ToggleUI()
  end) 
   
  UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(20, 3, 3)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 0, 0))} 
@@ -374,7 +362,7 @@ game.StarterGui:SetCore("SendNotification", {
   
   
  local Gb = loadstring(game:HttpGet("https://raw.githubusercontent.com/vqfx/SytroNight4ROBLOX/main/libraries/kavo.lua"))()  
- local Window = Gb.CreateLib("Gamebreaker X Dark Hub | Bedwars", "Serpent") 
+ local Window = Gb.CreateLib("Gamebreaker | Bedwars⚡️ | V1.3", "Serpent") 
  local entity = loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/Libraries/entityHandler.lua", true))() 
   
  do 

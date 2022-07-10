@@ -362,7 +362,7 @@ local GbXRayHubWatermark = Instance.new("ScreenGui")
   
   
  local Gb = loadstring(game:HttpGet("https://raw.githubusercontent.com/vqfx/SytroNight4ROBLOX/main/libraries/kavo.lua"))()  
- local Window = Gb.CreateLib("Gamebreaker | Bedwarsâš¡ï¸ | V1.4", "Serpent") 
+ local Window = Gb.CreateLib("Gamebreaker | Bedwars⚡ | V1.4", "Serpent") 
   
  local colors = {
     SchemeColor = Color3.fromRGB(0,255,255),

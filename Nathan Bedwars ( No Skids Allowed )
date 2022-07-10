@@ -362,17 +362,8 @@ local GbXRayHubWatermark = Instance.new("ScreenGui")
   
   
  local Gb = loadstring(game:HttpGet("https://raw.githubusercontent.com/vqfx/SytroNight4ROBLOX/main/libraries/kavo.lua"))()  
- local Window = Gb.CreateLib("Gamebreaker | Bedwars⚡️ | V1.4", "Serpent") 
- local entity = loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/VapeV4ForRoblox/main/Libraries/entityHandler.lua", true))() 
+ local Window = Gb.CreateLib("Gamebreaker | Bedwarsâš¡ï¸ | V1.4", "Serpent") 
   
- do 
-         local oldcharacteradded = entity.characterAdded 
-         entity.characterAdded = function(plr, char, localcheck) 
-                 return oldcharacteradded(plr, char, localcheck, function() end) 
-         end 
-         entity.fullEntityRefresh() 
- end 
- 
  local colors = {
     SchemeColor = Color3.fromRGB(0,255,255),
     Background = Color3.fromRGB(0, 0, 0),
@@ -551,7 +542,7 @@ local GbXRayHubWatermark = Instance.new("ScreenGui")
          end 
  end) 
   
- Tab1Section:NewSlider("Distance 1-50", "Increase killaura distance", 50, 1, function(val) 
+ Tab1Section:NewSlider("Distance 1-40", "Increase killaura distance", 40, 1, function(val) 
          DistVal["Value"] = val 
  end) 
   
@@ -581,7 +572,7 @@ local GbXRayHubWatermark = Instance.new("ScreenGui")
           end  
   end)  
     
- Tab1Section:NewSlider("Range 18-1", "", 18, 1, function(val) -- 500 (MaxValue) | 0 (MinValue)  
+ Tab1Section:NewSlider("Range 1-50", "", 50, 1, function(val) -- 500 (MaxValue) | 0 (MinValue)  
           reachval["Value"] = val  
   end) 
   
@@ -933,13 +924,6 @@ end)
      end 
  end) 
   
- Tab2Section:NewButton("Vape","Opens Vape",function() 
- loadstring(game:HttpGet("https://raw.githubusercontent.com/Error-virus/holy-arceus-x-working-vape-v4/main/vape%20v4%20fixed%20version.lua", true))() 
- end) 
-  
- Tab2Section:NewButton("Rise","Opens Rise",function() 
- loadstring(game:HttpGet("https://raw.githubusercontent.com/7GrandDadPGN/RiseForRoblox/main/main.lua", true))() 
- end) 
   
  Tab4Section:NewButton("Zombie Animation" , "Plays Zombie Animation",function() 
  loadstring(game:HttpGet("https://pastebin.com/raw/t3yTSPRn",true))() 
@@ -1202,10 +1186,3 @@ end)
     Insult() 
  end 
  end)
- 
- local Tab6Color = Tab6:NewSection("UI Color")
- for theme, color in pairs(themes) do
-    Tab6Color:NewColorPicker(theme, "Change your "..theme, color, function(color3)
-        Gb:ChangeColor(theme, color3)
-    end)
-end

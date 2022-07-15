@@ -1,59 +1,4 @@
-local GbXRayHubWatermark = Instance.new("ScreenGui") 
- local TextLabel = Instance.new("TextButton") 
- local UIGradient = Instance.new("UIGradient") 
- local TextLabel_2 = Instance.new("TextLabel") 
- local UIGradient_2 = Instance.new("UIGradient") 
- local UITextSizeConstraint = Instance.new("UITextSizeConstraint") 
- local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint") 
-  
- GbXRayHubWatermark.Name = "GbXRayHubWatermark" 
- GbXRayHubWatermark.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui") 
- GbXRayHubWatermark.ZIndexBehavior = Enum.ZIndexBehavior.Sibling 
- GbXRayHubWatermark.ResetOnSpawn = false 
-  
- TextLabel.Parent = GbXRayHubWatermark 
- TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
- TextLabel.BackgroundTransparency = 1.000 
- TextLabel.BorderSizePixel = 0 
- TextLabel.Position = UDim2.new(-0.000772226602, 0, 0.0343558267, 0) 
- TextLabel.Size = UDim2.new(0.170134634, 0, 0.0700389072, 0) 
- TextLabel.Font = Enum.Font.GothamBold 
- TextLabel.Text = "Gamebreaker" 
- TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255) 
- TextLabel.TextScaled = true 
- TextLabel.TextSize = 28.000 
- TextLabel.TextWrapped = true 
- TextLabel.TextXAlignment = Enum.TextXAlignment.Left 
- TextLabel.MouseButton1Down:Connect(function() 
-    game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.R,false,game) -- Press E key.
- end) 
-  
- UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(20, 3, 3)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 0, 0))} 
- UIGradient.Parent = TextLabel 
-  
- TextLabel_2.Parent = TextLabel 
- TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
- TextLabel_2.BackgroundTransparency = 1.000 
- TextLabel_2.BorderSizePixel = 0 
- TextLabel_2.Position = UDim2.new(-0.000772226602, 0, 0.67410934, 0) 
- TextLabel_2.Size = UDim2.new(1, 0, 1, 0) 
- TextLabel_2.Font = Enum.Font.GothamBold 
- TextLabel_2.Text = "V1.4" 
- TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255) 
- TextLabel_2.TextScaled = true 
- TextLabel_2.TextSize = 24.000 
- TextLabel_2.TextWrapped = true 
- TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left 
-  
- UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(20, 3, 3)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(20, 0, 0))} 
- UIGradient_2.Parent = TextLabel_2 
-  
- UITextSizeConstraint.Parent = TextLabel_2 
- UITextSizeConstraint.MaxTextSize = 24 
-  
- UITextSizeConstraint_2.Parent = TextLabel 
- UITextSizeConstraint_2.MaxTextSize = 27 
-  
+
  local players = game:GetService("Players") 
  local lplr = players.LocalPlayer 
  local oldchar = lplr.Character 
@@ -362,15 +307,73 @@ local GbXRayHubWatermark = Instance.new("ScreenGui")
   
   
  local Gb = loadstring(game:HttpGet("https://raw.githubusercontent.com/vqfx/SytroNight4ROBLOX/main/libraries/kavo.lua"))()  
- local Window = Gb.CreateLib("Gamebreaker | Bedwars⚡ | V1.4", "Serpent") 
+ local Window = Gb.CreateLib("Gamebreaker | Bedwarsâš¡ï¸ | V1.4", "Serpent") 
+ local entity = loadstring(game:HttpGet("https://raw.githubusercontent.com/JustDxrk/Vxpe-Entity/main/Vxpe%20Entity", true))()
+
+do
+	local oldcharacteradded = entity.characterAdded
+	entity.characterAdded = function(plr, char, localcheck)
+		return oldcharacteradded(plr, char, localcheck, function() end)
+	end
+	entity.fullEntityRefresh()
+end
+ 
+ local GbXRayHubWatermark = Instance.new("ScreenGui") 
+ local TextLabel = Instance.new("TextButton") 
+ local UIGradient = Instance.new("UIGradient") 
+ local TextLabel_2 = Instance.new("TextLabel") 
+ local UIGradient_2 = Instance.new("UIGradient") 
+ local UITextSizeConstraint = Instance.new("UITextSizeConstraint") 
+ local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint") 
   
- local colors = {
-    SchemeColor = Color3.fromRGB(0,255,255),
-    Background = Color3.fromRGB(0, 0, 0),
-    Header = Color3.fromRGB(0, 0, 0),
-    TextColor = Color3.fromRGB(255,255,255),
-    ElementColor = Color3.fromRGB(20, 20, 20)
-}
+ GbXRayHubWatermark.Name = "GbXRayHubWatermark" 
+ GbXRayHubWatermark.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui") 
+ GbXRayHubWatermark.ZIndexBehavior = Enum.ZIndexBehavior.Sibling 
+ GbXRayHubWatermark.ResetOnSpawn = false 
+  
+ TextLabel.Parent = GbXRayHubWatermark 
+ TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
+ TextLabel.BackgroundTransparency = 1.000 
+ TextLabel.BorderSizePixel = 0 
+ TextLabel.Position = UDim2.new(-0.000772226602, 0, 0.0343558267, 0) 
+ TextLabel.Size = UDim2.new(0.170134634, 0, 0.0700389072, 0) 
+ TextLabel.Font = Enum.Font.GothamBold 
+ TextLabel.Text = "Gamebreaker" 
+ TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255) 
+ TextLabel.TextScaled = true 
+ TextLabel.TextSize = 28.000 
+ TextLabel.TextWrapped = true 
+ TextLabel.TextXAlignment = Enum.TextXAlignment.Left 
+ TextLabel.MouseButton1Down:Connect(function() 
+    game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.R,false,game) -- Press E key.
+ end) 
+  
+ UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 255, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 255, 0))} 
+ UIGradient.Parent = TextLabel 
+  
+ TextLabel_2.Parent = TextLabel 
+ TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
+ TextLabel_2.BackgroundTransparency = 1.000 
+ TextLabel_2.BorderSizePixel = 0 
+ TextLabel_2.Position = UDim2.new(-0.000772226602, 0, 0.67410934, 0) 
+ TextLabel_2.Size = UDim2.new(1, 0, 1, 0) 
+ TextLabel_2.Font = Enum.Font.GothamBold 
+ TextLabel_2.Text = "V1.4" 
+ TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255) 
+ TextLabel_2.TextScaled = true 
+ TextLabel_2.TextSize = 24.000 
+ TextLabel_2.TextWrapped = true 
+ TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left 
+  
+ UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 255, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 255, 0))} 
+ UIGradient_2.Parent = TextLabel_2 
+  
+ UITextSizeConstraint.Parent = TextLabel_2 
+ UITextSizeConstraint.MaxTextSize = 24 
+  
+ UITextSizeConstraint_2.Parent = TextLabel 
+ UITextSizeConstraint_2.MaxTextSize = 27 
+  
   
  local colorbox 
  local function makeRainbowText(text) 
@@ -396,8 +399,8 @@ local GbXRayHubWatermark = Instance.new("ScreenGui")
   
  local Tab1 = Window:NewTab("Main") 
  local Tab1Section = Tab1:NewSection("Main Script's") 
- local Tab2 = Window:NewTab("Other Scripts") 
- local Tab2Section = Tab2:NewSection("Other Scripts") 
+ local Tab2 = Window:NewTab("ESP") 
+ local Tab2Section = Tab2:NewSection("ESP") 
  local Tab4 = Window:NewTab("Animation") 
  local Tab4Section = Tab4 :NewSection("Filtering Enabled ( FE )") 
  local Misc = Window:NewTab("Misc") 
@@ -424,16 +427,17 @@ local GbXRayHubWatermark = Instance.new("ScreenGui")
  Credits:NewLabel("Moerii: Kill-Aura") 
  Credits:NewLabel("Moerii: Bednuker ( Still Not Fixed Lol )") 
  Credits:NewLabel("SVamp: Spider") 
- Credits:NewLabel("JN HH: Animation's") 
+ Credits:NewLabel("Nathan | Script Dev: Animation's") 
  Credits:NewLabel("Gamebreaker and Dark Hub: Anti-Void") 
  Credits:NewLabel("Special thanks to FelipeAce: For Suggesting Anti-Void") 
- Credits:NewLabel("Special thanks to SVamp: For Letting me use his ( other ) codes") 
+ Credits:NewLabel("Sytronight: Some Code's") 
   
  SectionUpdate:NewLabel("We Added") 
  SectionUpdate:NewLabel("Spider ( Player Misc )") 
  SectionUpdate:NewLabel("Toggle UI Using Keybind ( UI Settings )") 
  SectionUpdate:NewLabel("Fully Customizable Theme ( UI Settings )") 
  SectionUpdate:NewLabel("Full Bright ( Misc Section )") 
+ SectionUpdate:NewLabel("Annoy Players ( Troll Section )") 
  SectionUpdate:NewLabel("Damage Return ( Main Section )") 
  SectionUpdate:NewLabel("Theme Updated!") 
  SectionUpdate:NewLabel("Old Theme : Dark") 
@@ -463,7 +467,7 @@ local GbXRayHubWatermark = Instance.new("ScreenGui")
          end 
  end) 
   
- Tab1Section:NewSlider("Adjust Speed 1-27", "Adjust CFrame speed", 27, 1, function(s) 
+ Tab1Section:NewSlider("Adjust Speed 1-28", "Adjust CFrame speed", 28, 1, function(s) 
          speedval["Value"] = s 
  end) 
   
@@ -653,276 +657,12 @@ end)
      end 
  end) 
   
- Tab1Section:NewToggle("ESP", "ToggleInfo", function(state) 
-     if state then 
-         local lplr = game.Players.LocalPlayer 
- local camera = game:GetService("Workspace").CurrentCamera 
- local CurrentCamera = workspace.CurrentCamera 
- local worldToViewportPoint = CurrentCamera.worldToViewportPoint 
-  
- local HeadOff = Vector3.new(0, 0.5, 0) 
- local LegOff = Vector3.new(0,3,0) 
-  
- for i,v in pairs(game.Players:GetChildren()) do 
-     local BoxOutline = Drawing.new("Square") 
-     BoxOutline.Visible = false 
-     BoxOutline.Color = Color3.new(0,0,0) 
-     BoxOutline.Thickness = 3 
-     BoxOutline.Transparency = 1 
-     BoxOutline.Filled = false 
-  
-     local Box = Drawing.new("Square") 
-     Box.Visible = false 
-     Box.Color = Color3.new(1,1,1) 
-     Box.Thickness = 1 
-     Box.Transparency = 1 
-     Box.Filled = false 
-  
-     local HealthBarOutline = Drawing.new("Square") 
-     HealthBarOutline.Thickness = 3 
-     HealthBarOutline.Filled = false 
-     HealthBarOutline.Color = Color3.new(0,0,0) 
-     HealthBarOutline.Transparency = 1 
-     HealthBarOutline.Visible = false 
-  
-     local HealthBar = Drawing.new("Square") 
-     HealthBar.Thickness = 1 
-     HealthBar.Filled = false 
-     HealthBar.Transparency = 1 
-     HealthBar.Visible = false 
-  
-     function boxesp() 
-         game:GetService("RunService").RenderStepped:Connect(function() 
-             if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then 
-                 local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position) 
-  
-                 local RootPart = v.Character.HumanoidRootPart 
-                 local Head = v.Character.Head 
-                 local RootPosition, RootVis = worldToViewportPoint(CurrentCamera, RootPart.Position) 
-                 local HeadPosition = worldToViewportPoint(CurrentCamera, Head.Position + HeadOff) 
-                 local LegPosition = worldToViewportPoint(CurrentCamera, RootPart.Position - LegOff) 
-  
-                 if onScreen then 
-                     BoxOutline.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y) 
-                     BoxOutline.Position = Vector2.new(RootPosition.X - BoxOutline.Size.X / 2, RootPosition.Y - BoxOutline.Size.Y / 2) 
-                     BoxOutline.Visible = true 
-  
-                     Box.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y) 
-                     Box.Position = Vector2.new(RootPosition.X - Box.Size.X / 2, RootPosition.Y - Box.Size.Y / 2) 
-                     Box.Visible = true 
-  
-                     HealthBarOutline.Size = Vector2.new(2, HeadPosition.Y - LegPosition.Y) 
-                     HealthBarOutline.Position = BoxOutline.Position - Vector2.new(6,0) 
-                     HealthBarOutline.Visible = true 
-  
-                     HealthBar.Size = Vector2.new(2, (HeadPosition.Y - LegPosition.Y) / (game:GetService("Players")[v.Character.Name].NRPBS["MaxHealth"].Value / math.clamp(game:GetService("Players")[v.Character.Name].NRPBS["Health"].Value, 0, game:GetService("Players")[v.Character.Name].NRPBS:WaitForChild("MaxHealth").Value))) 
-                     HealthBar.Position = Vector2.new(Box.Position.X - 6, Box.Position.Y + (1 / HealthBar.Size.Y)) 
-                     HealthBar.Color = Color3.fromRGB(255 - 255 / (game:GetService("Players")[v.Character.Name].NRPBS["MaxHealth"].Value / game:GetService("Players")[v.Character.Name].NRPBS["Health"].Value), 255 / (game:GetService("Players")[v.Character.Name].NRPBS["MaxHealth"].Value / game:GetService("Players")[v.Character.Name].NRPBS["Health"].Value), 0) 
-                     HealthBar.Visible = true 
-  
-                     if v.TeamColor == lplr.TeamColor then 
-                         --- Our Team 
-                         BoxOutline.Visible = false 
-                         Box.Visible = false 
-                         HealthBarOutline.Visible = false 
-                         HealthBar.Visible = false 
-                     else 
-                         ---Enemy Team 
-                         BoxOutline.Visible = true 
-                         Box.Visible = true 
-                         HealthBarOutline.Visible = true 
-                         HealthBar.Visible = true 
-                     end 
-  
-                 else 
-                     BoxOutline.Visible = false 
-                     Box.Visible = false 
-                     HealthBarOutline.Visible = false 
-                     HealthBar.Visible = false 
-                 end 
-             else 
-                 BoxOutline.Visible = false 
-                 Box.Visible = false 
-                 HealthBarOutline.Visible = false 
-                 HealthBar.Visible = false 
-             end 
-         end) 
-     end 
-     coroutine.wrap(boxesp)() 
- end 
-  
- game.Players.PlayerAdded:Connect(function(v) 
-     local BoxOutline = Drawing.new("Square") 
-     BoxOutline.Visible = false 
-     BoxOutline.Color = Color3.new(0,0,0) 
-     BoxOutline.Thickness = 3 
-     BoxOutline.Transparency = 1 
-     BoxOutline.Filled = false 
-  
-     local Box = Drawing.new("Square") 
-     Box.Visible = false 
-     Box.Color = Color3.new(1,1,1) 
-     Box.Thickness = 1 
-     Box.Transparency = 1 
-     Box.Filled = false 
-  
-     local HealthBarOutline = Drawing.new("Square") 
-     HealthBarOutline.Thickness = 3 
-     HealthBarOutline.Filled = false 
-     HealthBarOutline.Color = Color3.new(0,0,0) 
-     HealthBarOutline.Transparency = 1 
-     HealthBarOutline.Visible = false 
-  
-     local HealthBar = Drawing.new("Square") 
-     HealthBar.Thickness = 1 
-     HealthBar.Filled = false 
-     HealthBar.Transparency = 1 
-     HealthBar.Visible = false 
-  
-     function boxesp() 
-         game:GetService("RunService").RenderStepped:Connect(function() 
-             if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then 
-                 local Vector, onScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position) 
-  
-                 local RootPart = v.Character.HumanoidRootPart 
-                 local Head = v.Character.Head 
-                 local RootPosition, RootVis = worldToViewportPoint(CurrentCamera, RootPart.Position) 
-                 local HeadPosition = worldToViewportPoint(CurrentCamera, Head.Position + HeadOff) 
-                 local LegPosition = worldToViewportPoint(CurrentCamera, RootPart.Position - LegOff) 
-  
-                 if onScreen then 
-                     BoxOutline.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y) 
-                     BoxOutline.Position = Vector2.new(RootPosition.X - BoxOutline.Size.X / 2, RootPosition.Y - BoxOutline.Size.Y / 2) 
-                     BoxOutline.Visible = true 
-  
-                     Box.Size = Vector2.new(1000 / RootPosition.Z, HeadPosition.Y - LegPosition.Y) 
-                     Box.Position = Vector2.new(RootPosition.X - Box.Size.X / 2, RootPosition.Y - Box.Size.Y / 2) 
-                     Box.Visible = true 
-  
-                     HealthBarOutline.Size = Vector2.new(2, HeadPosition.Y - LegPosition.Y) 
-                     HealthBarOutline.Position = BoxOutline.Position - Vector2.new(6,0) 
-                     HealthBarOutline.Visible = true 
-  
-                     HealthBar.Size = Vector2.new(2, (HeadPosition.Y - LegPosition.Y) / (game:GetService("Players")[v.Character.Name].NRPBS["MaxHealth"].Value / math.clamp(game:GetService("Players")[v.Character.Name].NRPBS["Health"].Value, 0, game:GetService("Players")[v.Character.Name].NRPBS:WaitForChild("MaxHealth").Value))) 
-                     HealthBar.Position = Vector2.new(Box.Position.X - 6, Box.Position.Y + (1/HealthBar.Size.Y)) 
-                     HealthBar.Color = Color3.fromRGB(255 - 255 / (game:GetService("Players")[v.Character.Name].NRPBS["MaxHealth"].Value / game:GetService("Players")[v.Character.Name].NRPBS["Health"].Value), 255 / (game:GetService("Players")[v.Character.Name].NRPBS["MaxHealth"].Value / game:GetService("Players")[v.Character.Name].NRPBS["Health"].Value), 0)                     
-                     HealthBar.Visible = true 
-  
-                     if v.TeamColor == lplr.TeamColor then 
-                         --- Our Team 
-                         BoxOutline.Visible = false 
-                         Box.Visible = false 
-                         HealthBarOutline.Visible = false 
-                         HealthBar.Visible = false 
-                     else 
-                         ---Enemy Team 
-                         BoxOutline.Visible = true 
-                         Box.Visible = true 
-                         HealthBarOutline.Visible = true 
-                         HealthBar.Visible = true 
-                     end 
-  
-                 else 
-                     BoxOutline.Visible = false 
-                     Box.Visible = false 
-                     HealthBarOutline.Visible = false 
-                     HealthBar.Visible = false 
-                 end 
-             else 
-                 BoxOutline.Visible = false 
-                 Box.Visible = false 
-                 HealthBarOutline.Visible = false 
-                 HealthBar.Visible = false 
-             end 
-         end) 
-     end 
-     coroutine.wrap(boxesp)() 
- end) 
-     else 
-         print("Toggle Off") 
-     end 
- end) 
-  
- Tab1Section:NewToggle("Add ESP Lines", "Lines", function(state) 
-     if state then 
-         local lplr = game.Players.LocalPlayer 
- local camera = game:GetService("Workspace").CurrentCamera 
- local CurrentCamera = workspace.CurrentCamera 
- local worldToViewportPoint = CurrentCamera.worldToViewportPoint 
-  
- _G.TeamCheck = false -- Use True or False to toggle TeamCheck 
-  
- for i,v in pairs(game.Players:GetChildren()) do 
-     local Tracer = Drawing.new("Line") 
-     Tracer.Visible = false 
-     Tracer.Color = Color3.new(1,1,1) 
-     Tracer.Thickness = 1 
-     Tracer.Transparency = 1 
-  
-     function lineesp() 
-         game:GetService("RunService").RenderStepped:Connect(function() 
-             if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then 
-                 local Vector, OnScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position) 
-  
-                 if OnScreen then 
-                     Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1) 
-                     Tracer.To = Vector2.new(Vector.X, Vector.Y) 
-  
-                     if _G.TeamCheck and v.TeamColor == lplr.TeamColor then 
-                         --//Teammates 
-                         Tracer.Visible = false 
-                     else 
-                         --//Enemies 
-                         Tracer.Visible = true 
-                     end 
-                 else 
-                     Tracer.Visible = false 
-                 end 
-             else 
-                 Tracer.Visible = false 
-             end 
-         end) 
-     end 
-     coroutine.wrap(lineesp)() 
- end 
-  
- game.Players.PlayerAdded:Connect(function(v) 
-     local Tracer = Drawing.new("Line") 
-     Tracer.Visible = false 
-     Tracer.Color = Color3.new(1,1,1) 
-     Tracer.Thickness = 1 
-     Tracer.Transparency = 1 
-  
-     function lineesp() 
-         game:GetService("RunService").RenderStepped:Connect(function() 
-             if v.Character ~= nil and v.Character:FindFirstChild("Humanoid") ~= nil and v.Character:FindFirstChild("HumanoidRootPart") ~= nil and v ~= lplr and v.Character.Humanoid.Health > 0 then 
-                 local Vector, OnScreen = camera:worldToViewportPoint(v.Character.HumanoidRootPart.Position) 
-  
-                 if OnScreen then 
-                     Tracer.From = Vector2.new(camera.ViewportSize.X / 2, camera.ViewportSize.Y / 1) 
-                     Tracer.To = Vector2.new(Vector.X, Vector.Y) 
-  
-                     if _G.TeamCheck and v.TeamColor == lplr.TeamColor then 
-                         --//Teammates 
-                         Tracer.Visible = false 
-                     else 
-                         --//Enemies 
-                         Tracer.Visible = true 
-                     end 
-                 else 
-                     Tracer.Visible = false 
-                 end 
-             else 
-                 Tracer.Visible = false 
-             end 
-         end) 
-     end 
-     coroutine.wrap(lineesp)() 
- end) 
-     else 
-         print("Toggle Off") 
-     end 
- end) 
+ Tab2Section:NewButton("ESP","Shows Enemies",function()
+  local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/Kiriot22/ESP-Lib/main/ESP.lua"))()
+  ESP:Toggle(true)
+  ESP.TeamColor = true
+  ESP.Tracers = true
+  end)
   
   
  Tab4Section:NewButton("Zombie Animation" , "Plays Zombie Animation",function() 

@@ -307,7 +307,7 @@
   
   
  local Gb = loadstring(game:HttpGet("https://raw.githubusercontent.com/vqfx/SytroNight4ROBLOX/main/libraries/kavo.lua"))()  
- local Window = Gb.CreateLib("Gamebreaker | Bedwarsâš¡ï¸ | V1.4", "Serpent") 
+ local Window = Gb.CreateLib("Gamebreaker | Bedwars⚡ | V1.4", "Serpent") 
  local entity = loadstring(game:HttpGet("https://raw.githubusercontent.com/JustDxrk/Vxpe-Entity/main/Vxpe%20Entity", true))()
 
 do
@@ -345,9 +345,9 @@ end
  TextLabel.TextWrapped = true 
  TextLabel.TextXAlignment = Enum.TextXAlignment.Left 
  TextLabel.MouseButton1Down:Connect(function() 
-    game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.R,false,game) -- Press E key.
- end) 
-  
+    Gb:ToggleUI()
+ end)
+
  UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 255, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 255, 0))} 
  UIGradient.Parent = TextLabel 
   

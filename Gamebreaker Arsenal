@@ -1,0 +1,152 @@
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Gamebreaker";
+    Text = "Enjoy Using Gamebreaker!"; -- what the text says (ofc)
+    Duration = 60;
+})
+wait(1)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "GamebreakerLoaded";
+    Text = "This is our first ever arsenal script"; -- what the text says (ofc)
+    Duration = 60;
+})
+
+local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/wall%20v3')))()
+
+local w = library:CreateWindow("Gamebreaker") -- Creates the window
+
+local b = w:CreateFolder("Main") -- Creates the folder(U will put here your buttons,etc)
+
+--Scripts
+
+b:Button("Expand Hitbox",function()
+    function getplrsname() for i,v in pairs(game:GetChildren()) do if v.ClassName == "Players" then return v.Name end end end local players = getplrsname() local plr = game[players].LocalPlayer coroutine.resume(coroutine.create(function() while wait(1) do coroutine.resume(coroutine.create(function() for _,v in pairs(game[players]:GetPlayers()) do if v.Name ~= plr.Name and v.Character then v.Character.RightUpperLeg.CanCollide = false v.Character.RightUpperLeg.Transparency = 75 v.Character.RightUpperLeg.Size = Vector3.new(21,21,21) v.Character.LeftUpperLeg.CanCollide = false v.Character.LeftUpperLeg.Transparency = 75 v.Character.LeftUpperLeg.Size = Vector3.new(21,21,21) v.Character.HeadHB.CanCollide = false v.Character.HeadHB.Transparency = 75 v.Character.HeadHB.Size = Vector3.new(21,21,21) v.Character.HumanoidRootPart.CanCollide = false v.Character.HumanoidRootPart.Transparency = 75 v.Character.HumanoidRootPart.Size = Vector3.new(21,21,21) end end end)) end end))
+end)
+
+b:Button("ESP",function()
+
+--Made by Andrheyplayz_officalyt
+local gui = Instance.new("BillboardGui");
+gui.Name = "";
+gui.AlwaysOnTop = true;
+gui.LightInfluence = 0;
+gui.Size = UDim2.new(1.75, 0, 1.75, 0);
+local frame = Instance.new("Frame", gui);
+frame.BackgroundColor3 = Color3.fromRGB(170, 0, 0);
+frame.Size = UDim2.new(1, 0, 1, 0);
+frame.BorderSizePixel = 4;
+frame.BorderColor3 = Color3.fromRGB(0, 0, 0);
+local gi = gui:Clone();
+local body = frame:Clone();
+body.Parent = gi;
+body.BackgroundColor3 = Color3.fromRGB(0, 170, 170);
+
+for _, v in pairs(game:GetService("Players"):GetPlayers()) do
+    if v.Name ~= game:GetService("Players").LocalPlayer.Name and v.Character and v.Character:FindFirstChild("Head") then
+        gui:Clone().Parent = v.Character.Head;
+    end
+end
+end)
+
+b:Button("Fast Fire",function()
+    local replicationstorage = game.ReplicatedStorage
+
+for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
+   if v.Name == "Auto" then
+       v.Value = true
+   end
+   if v.Name == "RecoilControl" then
+       v.Value = 0
+   end
+   if v.Name == "MaxSpread" then
+       v.Value = 0
+   end
+   if v.Name == "ReloadTime" then
+      v.Value = 0.1
+   end
+   if v.Name == "FireRate" then
+       v.Value = 0.05
+   end
+   if v.Name == "Crit" then
+       v.Value = 20
+   end
+end
+wait(1)
+game.StarterGui:SetCore("SendNotification", {
+    Title = "Activated!";
+    Text = "fast fire,fast knife,fast reload loaded!"; -- what the text says (ofc)
+    Duration = 10;
+})
+end)
+
+b:Button("RGB Gun",function()
+    local c = 1 function zigzag(X)  return math.acos(math.cos(X * math.pi)) / math.pi end game:GetService("RunService").RenderStepped:Connect(function()  if game.Workspace.Camera:FindFirstChild('Arms') then   for i,v in pairs(game.Workspace.Camera.Arms:GetDescendants()) do    if v.ClassName == 'MeshPart' then      v.Color = Color3.fromHSV(zigzag(c),1,1)     c = c + .0001    end   end  end end)    
+end)
+
+b:Button("Aimbot",function()
+    game.StarterGui:SetCore("SendNotification", {
+    Title = "Under Construction!";
+    Text = "I will try to fix it asap!"; -- what the text says (ofc)
+    Duration = 10;
+})
+end)
+
+b:Button("Invisible",function()
+    loadstring(game:HttpGet(('https://raw.githubusercontent.com/Cesare0328/my-scripts/main/arsenal%20updated%20invis.lua'),true))()
+end)
+
+b:Button("Noclip",function()
+    local message = Instance.new("Message",game.Workspace)
+    message.Text = 'Noclip Activated! By Gamebreaker'
+    wait(2)
+    message:Destroy()
+    wait(1)
+    local noclip = true char = game.Players.LocalPlayer.Character while true do if noclip == true then for _,v in pairs(char:children()) do pcall(function() if v.className == "Part" then v.CanCollide = false elseif v.ClassName == "Model" then v.Head.CanCollide = false end end) end end game:service("RunService").Stepped:wait() end
+end)
+
+b:Button("Wallbang",function()
+    local CurrentCamera = workspace.CurrentCamera
+local Players = game.GetService(game, "Players")
+local LocalPlayer = Players.LocalPlayer
+local Mouse = LocalPlayer:GetMouse()
+function ClosestPlayer()
+    local MaxDist, Closest = math.huge
+    for I,V in pairs(Players.GetPlayers(Players)) do
+        if V == LocalPlayer then continue end
+        if V.Team == LocalPlayer then continue end
+        if not V.Character then continue end
+        local Head = V.Character.FindFirstChild(V.Character, "Head")
+        if not Head then continue end
+        local Pos, Vis = CurrentCamera.WorldToScreenPoint(CurrentCamera, Head.Position)
+        if not Vis then continue end
+        local MousePos, TheirPos = Vector2.new(Mouse.X, Mouse.Y), Vector2.new(Pos.X, Pos.Y)
+        local Dist = (TheirPos - MousePos).Magnitude
+        if Dist < MaxDist then
+            MaxDist = Dist
+            Closest = V
+        end
+    end
+    return Closest
+end
+local MT = getrawmetatable(game)
+local OldNC = MT.__namecall
+local OldIDX = MT.__index
+setreadonly(MT, false)
+MT.__namecall = newcclosure(function(self, ...)
+    local Args, Method = {...}, getnamecallmethod()
+    if Method == "FindPartOnRayWithIgnoreList" and not checkcaller() then
+        local CP = ClosestPlayer()
+        if CP and CP.Character and CP.Character.FindFirstChild(CP.Character, "Head") then
+            Args[1] = Ray.new(CurrentCamera.CFrame.Position, (CP.Character.Head.Position - CurrentCamera.CFrame.Position).Unit * 1000)
+            return OldNC(self, unpack(Args))
+        end
+    end
+    return OldNC(self, ...)
+end)
+MT.__index = newcclosure(function(self, K)
+    if K == "Clips" then
+        return workspace.Map
+    end
+    return OldIDX(self, K)
+end)
+setreadonly(MT, true)
+end)

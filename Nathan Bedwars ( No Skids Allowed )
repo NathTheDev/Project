@@ -1,4 +1,12 @@
-
+game.StarterGui:SetCore("SendNotification", { 
+     Title = "Gamebreaker"; 
+     Text = "Wait 5 Seconds.";
+     Icon = "rbxassetid://10293231248";
+     Duration = 3; 
+ }) 
+ 
+ wait(5)
+ 
  local players = game:GetService("Players") 
  local lplr = players.LocalPlayer 
  local oldchar = lplr.Character 
@@ -318,61 +326,30 @@ do
 	entity.fullEntityRefresh()
 end
  
- local GbXRayHubWatermark = Instance.new("ScreenGui") 
- local TextLabel = Instance.new("TextButton") 
- local UIGradient = Instance.new("UIGradient") 
- local TextLabel_2 = Instance.new("TextLabel") 
- local UIGradient_2 = Instance.new("UIGradient") 
- local UITextSizeConstraint = Instance.new("UITextSizeConstraint") 
- local UITextSizeConstraint_2 = Instance.new("UITextSizeConstraint") 
-  
- GbXRayHubWatermark.Name = "GbXRayHubWatermark" 
- GbXRayHubWatermark.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui") 
- GbXRayHubWatermark.ZIndexBehavior = Enum.ZIndexBehavior.Sibling 
- GbXRayHubWatermark.ResetOnSpawn = false 
-  
- TextLabel.Parent = GbXRayHubWatermark 
- TextLabel.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
- TextLabel.BackgroundTransparency = 1.000 
- TextLabel.BorderSizePixel = 0 
- TextLabel.Position = UDim2.new(-0.000772226602, 0, 0.0343558267, 0) 
- TextLabel.Size = UDim2.new(0.170134634, 0, 0.0700389072, 0) 
- TextLabel.Font = Enum.Font.GothamBold 
- TextLabel.Text = "Gamebreaker" 
- TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255) 
- TextLabel.TextScaled = true 
- TextLabel.TextSize = 28.000 
- TextLabel.TextWrapped = true 
- TextLabel.TextXAlignment = Enum.TextXAlignment.Left 
- TextLabel.MouseButton1Down:Connect(function() 
-    Gb:ToggleUI()
- end)
+ local NathWatermark = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local TextButton = Instance.new("TextButton")
+NathWatermark.ResetOnSpawn = false
 
- UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 255, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 255, 0))} 
- UIGradient.Parent = TextLabel 
-  
- TextLabel_2.Parent = TextLabel 
- TextLabel_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255) 
- TextLabel_2.BackgroundTransparency = 1.000 
- TextLabel_2.BorderSizePixel = 0 
- TextLabel_2.Position = UDim2.new(-0.000772226602, 0, 0.67410934, 0) 
- TextLabel_2.Size = UDim2.new(1, 0, 1, 0) 
- TextLabel_2.Font = Enum.Font.GothamBold 
- TextLabel_2.Text = "V1.4" 
- TextLabel_2.TextColor3 = Color3.fromRGB(255, 255, 255) 
- TextLabel_2.TextScaled = true 
- TextLabel_2.TextSize = 24.000 
- TextLabel_2.TextWrapped = true 
- TextLabel_2.TextXAlignment = Enum.TextXAlignment.Left 
-  
- UIGradient_2.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 255, 0)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 255, 0))} 
- UIGradient_2.Parent = TextLabel_2 
-  
- UITextSizeConstraint.Parent = TextLabel_2 
- UITextSizeConstraint.MaxTextSize = 24 
-  
- UITextSizeConstraint_2.Parent = TextLabel 
- UITextSizeConstraint_2.MaxTextSize = 27 
+NathWatermark.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+
+Frame.Parent = NathWatermark
+Frame.BackgroundColor3 = Color3.fromRGB(67, 237, 255)
+Frame.Position = UDim2.new(0.0902021751, 0, 0.140783742, 0)
+Frame.Size = UDim2.new(0, 61, 0, 61)
+
+TextButton.Parent = Frame
+TextButton.BackgroundColor3 = Color3.fromRGB(17, 48, 255)
+TextButton.BackgroundTransparency = 1.000
+TextButton.Position = UDim2.new(0.117513195, 0, 0.0823217779, 0)
+TextButton.Size = UDim2.new(0, 46, 0, 50)
+TextButton.Font = Enum.Font.SourceSans
+TextButton.Text = "TOGGLE"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 14.000
+TextButton.MouseButton1Down:Connect(function() 
+    Gb:ToggleUI()
+ end) 
   
   
  local colorbox 
@@ -407,8 +384,6 @@ end
  local MiscSection = Misc:NewSection("Misc") 
  local Tab5 = Window:NewTab("Credits") 
  local Credits = Tab5:NewSection("Credits") 
- local Tab6 = Window:NewTab("UI Settings") 
- local Tab6Section = Tab6:NewSection("Toggle UI")
  local Tab7 = Window:NewTab("World Misc") 
  local Void = Tab7:NewSection("Anti-Void") 
  local Tab8 = Window:NewTab("Player Misc") 
@@ -471,45 +446,20 @@ end
          speedval["Value"] = s 
  end) 
   
- Void:NewToggle("Anti-Void", "Give's you a second chance to get back on land", function(state)  
-          if state then  
-                  antivoidp = Instance.new("Part", workspace)  
-                  antivoidp.Name = "AntiVoid"  
-                  antivoidp.CanCollide = true  
-                  antivoidp.Size = Vector3.new(2048, 1, 2048)  
-                  antivoidp.Anchored = true  
-                  antivoidp.Transparency = 1 - (antivoidtransparent["Value"] / 100)  
-                  antivoidp.Material = Enum.Material.Neon  
-                  antivoidp.Color = Color3.fromHSV(antivoidcolor["Hue"], antivoidcolor["Sat"], antivoidcolor["Value"])  
-                  antivoidp.Position = Vector3.new(0, 23.5, 0)  
-                  antivoidp.Touched:connect(function(touchedvoid)  
-                          if touchedvoid.Parent:FindFirstChild("Humanoid") and touchedvoid.Parent.Name == lplr.Name then  
-                                  lplr.Character.Humanoid.Jump = true  
-                                  lplr.Character.Humanoid:ChangeState("Jumping")  
-                                  wait(0.2)  
-                                  lplr.Character.Humanoid:ChangeState("Jumping")  
-                                  wait(0.2)  
-                                  lplr.Character.Humanoid:ChangeState("Jumping")  
-                          end  
-                  end)  
-          else  
-                  if antivoidp then  
-                          antivoidp:Remove()  
-                  end  
-          end  
-  end)  
-    
-  Void:NewColorPicker("Anti-Void Color", "Adjust antivoid color", Color3.fromHSV(antivoidcolor["Hue"], antivoidcolor["Sat"], antivoidcolor["Value"]), function(val)  
-          if antivoidp then  
-                  antivoidp.Color = (val)  
-          end  
-  end) 
-   
-  Void:NewSlider("Void Color Transparency", "Adjust antivoid transparency", 100, 0, function(val)  
-          if antivoidp then  
-                  antivoidp.Transparency = 1 - (val / 100)  
-          end  
-  end)  
+  Void:NewButton("Cooler Anti-Void", "Give's you a second chance to get back on land", function()
+  local specialpos = (workspace.MapCFrames:FindFirstChild("center") and workspace.MapCFrames.center.Value.p == Vector3.new(77, 11, 35))
+        AntiVoidP = Instance.new("Part")
+        AntiVoidP.Parent = Workspace
+        AntiVoidP.Name = "AntiVoid"
+        AntiVoidP.CanCollide = true
+        AntiVoidP.Size = Vector3.new(2048, 0.30, 2048)
+        AntiVoidP.Anchored = true
+        AntiVoidP.Transparency = 0.45
+        AntiVoidP.Material = Enum.Material.Concrete
+        AntiVoidP.Color = Color3.fromRGB(102,255,255)
+        AntiVoidP.Position = Vector3.new(0, 30.5, 0)
+    print("...")
+end)
    
   Tab1Section:NewToggle("Auto-Sprint", "Automatically on your sprint", function(state)  
           if state then  
@@ -732,6 +682,52 @@ Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=616008936"
 Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=616003713"
 Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=616005863"
  end) 
+ 
+ Tab4Section:NewButton("Cartoony Animation","Opens Cartoony Animation",function() 
+ local Animate = 
+ game.Players.LocalPlayer.Character.Animate 
+ Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=742637544"
+Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=742638445"
+Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=742640026"
+Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=742638842"
+Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=742637942"
+Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=742636889"
+Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=742637151"
+ end)
+
+Tab4Section:NewButton("Knight Animation","Opens Knight Animation",function()
+    local Animate = 
+ game.Players.LocalPlayer.Character.Animate
+ Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=657595757"
+Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=657568135"
+Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=657552124"
+Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=657564596"
+Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=658409194"
+Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=658360781"
+Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=657600338"
+end)
+Tab4Section:NewButton("Pirate Animation","Opens Pirate Animation",function()
+    local Animate = 
+ game.Players.LocalPlayer.Character.Animate
+ Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=750781874"
+Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=750782770"
+Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=750785693"
+Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=750783738"
+Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=750782230"
+Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=750779899"
+Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=750780242"
+end)
+Tab4Section:NewButton("Vampire Animation","Opens Vampire Animation",function()
+    local Animate = 
+ game.Players.LocalPlayer.Character.Animate
+ Animate.idle.Animation1.AnimationId = "http://www.roblox.com/asset/?id=1083445855"
+Animate.idle.Animation2.AnimationId = "http://www.roblox.com/asset/?id=1083450166"
+Animate.walk.WalkAnim.AnimationId = "http://www.roblox.com/asset/?id=1083473930"
+Animate.run.RunAnim.AnimationId = "http://www.roblox.com/asset/?id=1083462077"
+Animate.jump.JumpAnim.AnimationId = "http://www.roblox.com/asset/?id=1083455352"
+Animate.climb.ClimbAnim.AnimationId = "http://www.roblox.com/asset/?id=1083439238"
+Animate.fall.FallAnim.AnimationId = "http://www.roblox.com/asset/?id=1083443587"
+end)
   
   
  MiscSection:NewButton("FixCam", "fix camera bug on mobile", function() 
@@ -768,10 +764,6 @@ dofullbright()
 Light.LightingChanged:Connect(dofullbright)
 
 end)
-  
- Tab6Section:NewKeybind("Toggle UI", "Toggle The UI", Enum.KeyCode.R, function() 
-         Gb:ToggleUI() 
- end) 
   
  runcode(function() 
          local wall = nil 
@@ -811,7 +803,7 @@ end)
      end) 
  end) 
   
- Tab9section:NewButton("Annoy Player's", "Activate's Infinite Jump", function() 
+ Tab9section:NewButton("Annoy Player's", "Annoy Player", function() 
      local choosePlayer = false --set true if you want to insult one person only 
  local chosenPlayer = "" --if chosePlayer = true, type playername in quotes 
   

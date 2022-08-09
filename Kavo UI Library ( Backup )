@@ -10,7 +10,7 @@ local PlaceName = game:GetService("MarketplaceService"):GetProductInfo(game.Plac
     wait(1)
 
 do local GUI = game.CoreGui:FindFirstChild("GB");if GUI then GUI:Destroy();end;if _G.Color == nil then
-       _G.Color = Color3.fromRGB(147,112,219)
+       _G.Color = Color3.fromRGB(102,255,255)
    end 
 end
 
@@ -85,7 +85,7 @@ function GBUI:Window(text,gamenme,logo,keybind)
 	local abc = false
 	local logo = logo or 0
 	local currentpage = ""
-	local keybind = keybind or Enum.KeyCode.RightControl
+	local keybind = keybind or Enum.KeyCode.LeftShift
 	local yoo = string.gsub(tostring(keybind),"Enum.KeyCode.","")
 	if gamename == "" then 
 	    gamename = ""..PlaceName.Name
@@ -101,7 +101,7 @@ function GBUI:Window(text,gamenme,logo,keybind)
 	Main.Parent = GB
 	Main.ClipsDescendants = true
 	Main.AnchorPoint = Vector2.new(0.5,0.5)
-	Main.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
+	Main.BackgroundColor3 = Color3.fromRGB(51, 51, 255)
 	Main.Position = UDim2.new(0.5, 0, 0.5, 0)
 	Main.Size = UDim2.new(0, 0, 0, 0)
 	
@@ -139,7 +139,7 @@ function GBUI:Window(text,gamenme,logo,keybind)
 	Name.Size = UDim2.new(0, 61, 0, 27)
 	Name.Font = Enum.Font.GothamSemibold
 	Name.Text = hubname
-	Name.TextColor3 = Color3.fromRGB(147,112,219)
+	Name.TextColor3 = Color3.fromRGB(51,255,255)
 	Name.TextSize = 17.000
 
 	local Hub = Instance.new("TextLabel")
@@ -163,7 +163,7 @@ function GBUI:Window(text,gamenme,logo,keybind)
 	BindButton.Position = UDim2.new(0.847561002, 0, 0, 0)
 	BindButton.Size = UDim2.new(0, 100, 0, 27)
 	BindButton.Font = Enum.Font.GothamSemibold
-	BindButton.Text = "[RightControl]"
+	BindButton.Text = "[LeftShift]"
 	BindButton.TextColor3 = Color3.fromRGB(147,112,219)
 	BindButton.TextSize = 13.000
 

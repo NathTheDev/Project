@@ -1,4 +1,3 @@
-
 local RedLibrary = {}
 -- Random UI Name
 local RedLibraryName = tostring(math.random(100000,200000))..tostring(math.random(100000,200000))..tostring(math.random(100000,200000))
@@ -81,7 +80,7 @@ function RedLibrary:Create(xHubName,xGameName)
 
     Main.Name = "Main"
     Main.Parent = ScreenGui
-    Main.BackgroundColor3 = Color3.fromRGB(255, 51, 51)
+    Main.BackgroundColor3 = Color3.fromRGB(153, 0, 0)
     Main.Position = UDim2.new(0.278277636, 0, 0.281287253, 0)
     Main.Size = UDim2.new(0, 580, 0, 370)
 

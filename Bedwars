@@ -75,7 +75,7 @@ local cam = workspace.CurrentCamera
 local KnitClient = debug.getupvalue(require(lplr.PlayerScripts.TS.knit).setup, 6)
 local SwordCont = KnitClient.Controllers.SwordController
 local CombatConstant = require(game:GetService("ReplicatedStorage").TS.combat["combat-constant"]).CombatConstant
-CombatConstant.RAYCAST_SWORD_CHARACTER_DISTANCE = 18
+CombatConstant.RAYCAST_SWORD_CHARACTER_DISTANCE = 30
 
 local aura = false
 local DistVal = {["Value"] = 30}

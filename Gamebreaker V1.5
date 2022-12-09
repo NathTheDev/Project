@@ -16,7 +16,6 @@ end
 local bedwars = {
     ["SprintController"] = KnitClient.Controllers.SprintController,
     ["ClientHandlerStore"] = require(lplr.PlayerScripts.TS.ui.store).ClientStore,
-    ["KnockbackUtil"] = require(game:GetService("ReplicatedStorage").TS.damage["knockback-util"]).KnockbackUtil,
     ["PingController"] = require(lplr.PlayerScripts.TS.controllers.game.ping["ping-controller"]).PingController,
     ["DamageIndicator"] = KnitClient.Controllers.DamageIndicatorController.spawnDamageIndicator,
     ["SwordController"] = KnitClient.Controllers.SwordController,
@@ -96,8 +95,6 @@ function getitem(itm)
     end
     return false
 end
-local CombatConstant = require(game:GetService("ReplicatedStorage").TS.combat["combat-constant"]).CombatConstant
-CombatConstant.RAYCAST_SWORD_CHARACTER_DISTANCE = 18
 local old
 local VeloKnock = true
 local BedwarsSwords = require(game:GetService("ReplicatedStorage").TS.games.bedwars["bedwars-swords"]).BedwarsSwords

@@ -1,3 +1,8 @@
-Gamebreaker V2 Owner
+A Lua Scripter who owns Gamebreaker Exploit Hub for Roblox!
 
-Here you can have some of my open source script so skid it if you want.
+Current Script:
+
+Popular Game Hub
+Bedwars
+Arsenal ( Coming Soon )
+Evade ( Coming Soon )

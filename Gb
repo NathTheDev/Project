@@ -1,0 +1,183 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local Executor = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local Title = Instance.new("TextLabel")
+local TextBox = Instance.new("TextBox")
+local Execute = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local Clear = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local Exit = Instance.new("TextButton")
+local TextButton = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+
+--Properties:
+
+Executor.Name = "Executor"
+Executor.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Executor.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+Frame.Parent = Executor
+Frame.BackgroundColor3 = Color3.fromRGB(63, 63, 63)
+Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Frame.BorderSizePixel = 0
+Frame.Position = UDim2.new(0.282624364, 0, 0.233333319, 0)
+Frame.Size = UDim2.new(0.364532799, 0, 0.341975331, 0)
+
+UICorner.CornerRadius = UDim.new(0, 25)
+UICorner.Parent = Frame
+
+Title.Name = "Title"
+Title.Parent = Frame
+Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Title.BackgroundTransparency = 1.000
+Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Title.BorderSizePixel = 0
+Title.Position = UDim2.new(0.296146065, 0, 0, 0)
+Title.Size = UDim2.new(0.405679494, 0, 0.18050541, 0)
+Title.Font = Enum.Font.FredokaOne
+Title.Text = "Gamebreaker V1"
+Title.TextColor3 = Color3.fromRGB(255, 255, 255)
+Title.TextSize = 20.000
+
+TextBox.Parent = Frame
+TextBox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.BorderSizePixel = 0
+TextBox.Position = UDim2.new(0.186612576, 0, 0.18050541, 0)
+TextBox.Size = UDim2.new(0.734279871, 0, 0.566787004, 0)
+TextBox.Font = Enum.Font.SourceSans
+TextBox.Text = ""
+TextBox.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextBox.TextSize = 20.000
+
+Execute.Name = "Execute"
+Execute.Parent = Frame
+Execute.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Execute.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Execute.BorderSizePixel = 0
+Execute.Position = UDim2.new(0.186612576, 0, 0.79783392, 0)
+Execute.Size = UDim2.new(0.229208916, 0, 0.15523465, 0)
+Execute.Font = Enum.Font.FredokaOne
+Execute.Text = "Execute"
+Execute.TextColor3 = Color3.fromRGB(0, 0, 0)
+Execute.TextSize = 15.000
+Execute.Name = "Execute"
+Execute.Parent = Frame
+Execute.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Execute.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Execute.BorderSizePixel = 0
+Execute.Position = UDim2.new(0.186612576, 0, 0.79783392, 0)
+Execute.Size = UDim2.new(0.229208916, 0, 0.15523465, 0)
+Execute.Font = Enum.Font.FredokaOne
+Execute.Text = "Execute"
+Execute.TextColor3 = Color3.fromRGB(0, 0, 0)
+Execute.TextSize = 15.000
+
+local function ExecuteScript(script)
+    local f, err = loadstring(script)
+    if f then
+    f()
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Gamebreaker Android",
+            Text = "Script Executed",
+            Duration = 3
+        })
+    else
+        print("Script execution error:", err)
+        game.StarterGui:SetCore("SendNotification", {
+            Title = "Gamebreaker Android",
+            Text = "Script Error",
+            Duration = 3
+        })
+    end
+end
+ 
+-- Connect the execute button to the script execution function
+Execute.MouseButton1Click:Connect(function()
+    local script = TextBox.Text
+    ExecuteScript(script)
+end)
+
+UICorner_2.CornerRadius = UDim.new(0, 20)
+UICorner_2.Parent = Execute
+
+Clear.Name = "Clear"
+Clear.Parent = Frame
+Clear.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Clear.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Clear.BorderSizePixel = 0
+Clear.Position = UDim2.new(0.69168359, 0, 0.79783392, 0)
+Clear.Size = UDim2.new(0.229208916, 0, 0.15523465, 0)
+Clear.Font = Enum.Font.FredokaOne
+Clear.Text = "Clear"
+Clear.TextColor3 = Color3.fromRGB(0, 0, 0)
+Clear.TextSize = 15.000
+
+UICorner_3.CornerRadius = UDim.new(0, 20)
+UICorner_3.Parent = Clear
+
+Exit.Name = "Exit"
+Exit.Parent = Frame
+Exit.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+Exit.BackgroundTransparency = 1.000
+Exit.BorderColor3 = Color3.fromRGB(0, 0, 0)
+Exit.BorderSizePixel = 0
+Exit.Position = UDim2.new(0.85158205, 0, 0, 0)
+Exit.Size = UDim2.new(0.113590255, 0, 0.18050541, 0)
+Exit.Font = Enum.Font.FredokaOne
+Exit.Text = "X"
+Exit.TextColor3 = Color3.fromRGB(0, 0, 0)
+Exit.TextSize = 20.000
+Exit.MouseButton1Down:connect(function()
+	TextButton.Visible = false
+end)
+
+TextButton.Parent = Executor
+TextButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+TextButton.BorderColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.BorderSizePixel = 0
+TextButton.Position = UDim2.new(0.0445121937, 0, 0.135802463, 0)
+TextButton.Size = UDim2.new(0.0503091142, 0, 0.096296303, 0)
+TextButton.Font = Enum.Font.DenkOne
+TextButton.Text = "GB"
+TextButton.TextColor3 = Color3.fromRGB(0, 0, 0)
+TextButton.TextSize = 20.000
+
+UICorner_4.CornerRadius = UDim.new(0, 50)
+UICorner_4.Parent = TextButton
+
+-- Scripts:
+
+local function WSYJQ_fake_script() -- TextButton.LocalScript 
+	local script = Instance.new('LocalScript', TextButton)
+
+	
+end
+coroutine.wrap(WSYJQ_fake_script)()
+local function CLJEJ_fake_script() -- Executor.LocalScript 
+	local script = Instance.new('LocalScript', Executor)
+
+	frame = script.Parent.Frame
+	frame.Draggable = true
+	frame.Selectable = true
+	frame.Active = true
+end
+coroutine.wrap(CLJEJ_fake_script)()
+local function HRKUJTP_fake_script() -- Executor.LocalScript 
+	local script = Instance.new('LocalScript', Executor)
+
+	local SGui = script.Parent
+	local Frame = SGui:WaitForChild("Frame")
+	local Button = SGui:WaitForChild("TextButton")
+	
+	Button.MouseButton1Up:Connect(function()
+		Frame.Visible = not Frame.Visible
+	end)
+end
+coroutine.wrap(HRKUJTP_fake_script)()

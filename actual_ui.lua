@@ -4902,7 +4902,7 @@ local function C_fd()
 
 
 		execute.MouseButton1Click:Connect(function()
-			execute_script(source)
+			loadstring(source)()
 			game.StarterGui:SetCore("SendNotification", 
             {
             Title = "Delta Android";

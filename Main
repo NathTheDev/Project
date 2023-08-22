@@ -6,10 +6,10 @@ local Section = Tab:NewSection("Both Keyless")
 
 Section:NewButton("Load Delta Normal", "", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NathTheDev/Project/main/actual_ui.lua"))()
-    ScreenGui:Destroy()
+    Library:ToggleUI()
 end)
 
 Section:NewButton("Load Delta X", "", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/NathTheDev/Project/main/Dx"))()
-    ScreenGui:Destroy()
+    Library:ToggleUI()
 end)

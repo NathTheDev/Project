@@ -4837,7 +4837,7 @@ local function C_aa()
 	local script = G2L["aa"];
 	local btn = script.Parent
 	btn.MouseButton1Click:Connect(function()
-		execute_script(getclipboard())
+		loadstring(getclipboard())()
 		game.StarterGui:SetCore("SendNotification", 
             {
             Title = "Delta Android";

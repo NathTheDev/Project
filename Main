@@ -1,3 +1,4 @@
+--[[
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NathTheDev/Alysse-KavoUI/main/KavoUI"))()
 local Window = Library.CreateLib("Delta Loader", "PurpleTheme")
 
@@ -12,3 +13,6 @@ end)
 Section:NewButton("Load Delta X", "", function()
     print("soon")
 end)
+]]
+
+print("test")

@@ -1,14 +1,15 @@
+
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/NathTheDev/Alysse-KavoUI/main/KavoUI"))()
-local Window = Library.CreateLib("Delta Loader", "PurpleTheme)
+local Window = Library.CreateLib("Delta Loader", "PurpleTheme")
 
 local Tab = Window:NewTab("Load")
 local Section = Tab:NewSection("Both Keyless")
 
 Section:NewButton("Load Delta Normal", "", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/NathTheDev/Project/main/actual_ui.lua"))()
+    
     ScreenGui:Destroy()
 end)
 
 Section:NewButton("Load Delta X", "", function()
-    
+    ScreenGui:Destroy()
 end)

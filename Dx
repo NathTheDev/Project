@@ -29,12 +29,7 @@ end
 
 -- Go to near end line for configs.
 
-local function executescript(sc) runcode(sc) end
-
 --local executeclipboard = readclipboard_hideenv
-
-
-getgenv().readclipboard_hideenv = nil
 
 local DELTA = {};
 getgenv().Vm9vaE59PzVBeTVNdyY4JDsieDglUzdwRDNabyExbjR1ezBmYHNNT2kjOXk = true
@@ -51,7 +46,7 @@ DELTA["1"]["Name"] = [[Delta]];
 DELTA["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 DELTA["1"]["ResetOnSpawn"] = false;
 DELTA["1"]["DisplayOrder"] = 10;
-DELTA["1"].Enabled = false
+DELTA["1"].Enabled = true
 
 -- Dis is for floating icon Players
 DELTA["Ui"] = Instance.new("ScreenGui", gethui())
@@ -3943,7 +3938,7 @@ DELTA_MODULES[DELTA["160"]] = {
     script.Parent.Executor.Sidemenu.Script.Overlay.Holder.Showcase.Title.Text = title
     script.Parent.Executor.Sidemenu.Script.Overlay.Holder.Showcase.Description.Text = desc
     getgenv().ExecuteSuggestedScript = function()
-    executescript(source)
+    loadstring(source)()
     end
     end
 
@@ -4285,7 +4280,7 @@ DELTA_MODULES[DELTA["160"]] = {
 
 
     newscript.Button.MouseButton1Click:Connect(function()
-        executescript(source)
+        loadstring(source)()
         end)
 
         newscript.Button1.MouseButton1Click:Connect(function()
@@ -4632,7 +4627,7 @@ local lib = require(script.Parent.Parent.Parent.Parent.UILibrary)
 local btns = script.Parent
 btns.Parent.Parent.Visible = false
 btns.Button1.MouseButton1Click:Connect(function()
-    executescript(lib:GetSelectedScript())
+    loadstring(lib:GetSelectedScript())()
 
     if(not isfile("preventautoclose")) then
         btns.Parent.Visible = false
@@ -4836,7 +4831,7 @@ btns.Execute.MouseButton1Click:Connect(function()
     for i,v in pairs(btns.Parent.Code:GetChildren()) do
     if v:IsA("TextBox") then
     if v.Visible == true then
-    executescript(v.Text)
+    loadstring(v.Text)()
     end
     end
     end

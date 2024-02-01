@@ -2773,7 +2773,7 @@ local function KJDH_fake_script() -- VegaXAndroidUI.Loading
 		writefile("vegax_key.txt", "")
 	end
 	
-	script.Parent.VegaXMenuToggleFrame.Visible = false
+	script.Parent.VegaXMenuToggleFrame.Visible = true
 	
 	
 	repeat until game:IsLoaded()

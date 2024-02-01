@@ -6,8 +6,6 @@ if gethui():FindFirstChild("DeltaGui") then
     gethui():FindFirstChild("DeltaGui"):Destroy()
 end
 
-
-
 if not isfile("iconsize") then
     writefile("iconsize", "Medium")
 end
@@ -28,8 +26,10 @@ if not isfile("uses_syn") then
 end
 
 -- Go to near end line for configs.
-
 --local executeclipboard = readclipboard_hideenv
+
+
+getgenv().readclipboard_hideenv = nil
 
 local DELTA = {};
 getgenv().Vm9vaE59PzVBeTVNdyY4JDsieDglUzdwRDNabyExbjR1ezBmYHNNT2kjOXk = true
@@ -46,7 +46,7 @@ DELTA["1"]["Name"] = [[Delta]];
 DELTA["1"]["ZIndexBehavior"] = Enum.ZIndexBehavior.Sibling;
 DELTA["1"]["ResetOnSpawn"] = false;
 DELTA["1"]["DisplayOrder"] = 10;
-DELTA["1"].Enabled = true
+DELTA["1"].Enabled = false
 
 -- Dis is for floating icon Players
 DELTA["Ui"] = Instance.new("ScreenGui", gethui())
@@ -654,7 +654,7 @@ DELTA["40"]["TextColor3"] = Color3.fromRGB(255, 255, 255);
 DELTA["40"]["FontFace"] = Font.new([[rbxassetid://11702779517]], Enum.FontWeight.Regular, Enum.FontStyle.Normal);
 DELTA["40"]["AnchorPoint"] = Vector2.new(0, 0.5);
 DELTA["40"]["BackgroundTransparency"] = 1;
-DELTA["40"]["PlaceholderText"] = [[Search for scripts...]];
+DELTA["40"]["PlaceholderText"] = [[Search on scriptblox.com...]];
 DELTA["40"]["Size"] = UDim2.new(0.8766564130783081, 0, 0.35361653566360474, 0);
 DELTA["40"]["Selectable"] = false;
 DELTA["40"]["Text"] = [[]];
@@ -1742,7 +1742,7 @@ DELTA["c0"]["MultiLine"] = true;
 DELTA["c0"]["BackgroundTransparency"] = 1;
 DELTA["c0"]["Size"] = UDim2.new(0.9882024526596069, 0, 0.9716954827308655, 0);
 DELTA["c0"]["Text"] = "";
-DELTA["c0"]["PlaceholderText"] = "Thank you for using Delta <3\nDelta is made by Lxnny and #TeamDelta !";
+DELTA["c0"]["PlaceholderText"] = "Enjoy using Delta X UI";
 DELTA["c0"]["Position"] = UDim2.new(0.011494521982967854, 0, 0.012946978211402893, 3);
 DELTA["c0"]["AutomaticSize"] = Enum.AutomaticSize.XY;
 DELTA["c0"]["Visible"] = false;
@@ -4422,6 +4422,88 @@ if gethui():FindFirstChild("DeltaGui") then
     gethui():FindFirstChild("DeltaGui"):Destroy()
 end
 
+
+
+local AccountId = 8;
+
+
+function GetLink()
+    return string.format("https://gateway.platoboost.com/a/%i?id=%i", AccountId, game:GetService("Players").LocalPlayer.UserId);
+end
+
+local rateLimit = false;
+local rateLimitCountdown = 0;
+local errorWait = false;
+
+function Verify()
+    local key = KeyInput.Text;
+
+    if errorWait or rateLimit then 
+        return false
+    end;
+
+    DELTA["18"]["Text"] = "Checking key...";
+
+    local response = request({
+        Url = "https://api1.platoboost.com/v1/public/whitelist/8/" .. game:GetService("Players").LocalPlayer.UserId .. "?s",
+        Method = "GET"
+    })
+
+    if response.StatusCode == 200 then
+        if string.find(response.Body, "true") then
+            DELTA["18"]["Text"] = "Successfully whitelisted key!";
+            return true
+        else
+            if (#key > 0) then
+                local redeemResponse = request({
+                    Url = "https://api1.platoboost.com/v1/authenticators/redeem/8/" .. game:GetService("Players").LocalPlayer.UserId .. "/" .. key,
+                    Method = "POST"
+                });
+
+                if redeemResponse.StatusCode == 200 then
+                    if string.find(redeemResponse.Body, "true") then
+                        DELTA["18"]["Text"] = "Successfully redeemed key!";
+                        return true
+                    end
+                end           
+            end
+            DELTA["18"]["Text"] = "Invalid key detected, please try again!";
+            return false
+        end
+    elseif response.StatusCode == 204 then
+		DELTA["18"]["Text"] = "Invalid key detected, please try again!";
+        return false;
+    elseif response.StatusCode == 429 then
+        if not rateLimit then 
+            rateLimit = true
+            rateLimitCountdown = 10
+            task.spawn(function() 
+                --cloudflare limits for 10seconds.
+                while rateLimit do
+                    DELTA["18"]["Text"] = "You are being rate-limited, please slow down. Try again in " .. rateLimitCountdown .. " seconds.";
+                    wait(1)
+                    rateLimitCountdown = rateLimitCountdown - 1;
+                    
+                    if rateLimitCountdown < 0 then
+                        rateLimit = false;
+                        rateLimitCountdown = 0;
+                        DELTA["18"]["Text"] = "Rate limit is over, please try again.";
+                    end
+                end
+            end) 
+        end
+    elseif response.StatusCode == 500 then
+        errorWait = true
+        task.spawn(function() 
+            DELTA["18"]["Text"] = "An error has occured in the server, please wait 3 seconds and try again.";
+            wait(3) 
+            errorWait = false 
+        end)
+    end
+end
+
+
+
 -- Continue
 buttons.Buttons.Button1.MouseButton1Click:Connect(function()
     local key = KeyInput.Text
@@ -4430,30 +4512,20 @@ buttons.Buttons.Button1.MouseButton1Click:Connect(function()
     -- whitelist test
     if key == "WHITELIST" then
         whitelist()
-    elseif key == "Test1" then
+    elseif string.find(key, "BOOST") then
+        boost_whitelist()
+    end
+
+    if Verify() then
         GrantAccess()
     end
-    
-    -- Actual key system for regular users
-    local url = "https://redirect-api.work.ink/tokenValid/" .. key
-        local realkey = game:HttpGet(url)
-        --print(realkey)
-        if string.find(realkey, "true") then
-            writefile("dsigfiureikuger.txt", key)
-            --GrantAccess()
-        end
 end)
 
 
 -- Get Key
 buttons.Buttons.Button2.MouseButton1Click:Connect(function()
-    setclipboard("https://work.ink/2gD/deltaandroidkey")
-    game.StarterGui:SetCore("SendNotification",
-        {
-            Title = "Delta Android";
-            Text = "Copied key link to clipboard!";
-            Duration = 4;
-        })
+    setclipboard(GetLink())
+    buttons.Buttons.Button2.Input.Text = "Copied Link"
     end)
 
 -- Close
@@ -4548,34 +4620,7 @@ local uilib = require(script.Parent.Parent.Parent.UILibrary)
 
 makefolder("ImageCache")
 
-local url = "https://www.scriptblox.com/api/script/search?q=?"
-local response = game:HttpGetAsync(url)
-local http = game:GetService("HttpService")
-local decoded = http:JSONDecode(response)
-for _, script in pairs(decoded.result.scripts) do
---print"found"
-if script.scriptType == "free" and script.isPatched == false then
-if (script.isUniversal == true) then
-local random = math.random(0, 10000)
-local randomname = "ImageCache/image"..tostring(random)..".png"
 
-wait(0.1)
-
-if isfile(randomname) then
-uilib.ScriptSearch:Add(script.title, script.game.name, script.script, "", script.verified, script.views)
-
-else
-    uilib.ScriptSearch:Add(script.title, script.game.name, script.script, "", script.verified, script.views)
-end
---print'yey'
-
-else
-    uilib.ScriptSearch:Add(script.title, script.game.name, script.script, "https://assetgame.roblox.com/Game/Tools/ThumbnailAsset.ashx?aid="..script.game.gameId.."&fmt=png&wd=420&ht=420", script.verified, script.views)
---parint"gamur"
-end
---print"oki"
-end
-end
 textbox.FocusLost:Connect(function()
     for i,v in pairs(script.Parent:GetChildren()) do
     if v:IsA("ImageButton") then
@@ -4584,7 +4629,7 @@ textbox.FocusLost:Connect(function()
     end
 --print"Searching"
     local KeyWordSearch = textbox.Text
-    local url = "https://www.scriptblox.com/api/script/search?q="..KeyWordSearch
+    local url = "https://scriptblox.com/api/script/search?q="..string.gsub(KeyWordSearch, " ", "%%20")
     local response = game:HttpGetAsync(url)
     local http = game:GetService("HttpService")
     local decoded = http:JSONDecode(response)
@@ -4595,7 +4640,7 @@ textbox.FocusLost:Connect(function()
     local random = math.random(0, 10000)
     local randomname = "ImageCache/image"..tostring(random)..".png"
     pcall(function()
-        writefile(randomname, game:HttpGet("https://scriptblox.com" .. script.game.imageUrl))
+        --writefile(randomname, game:HttpGet("https://scriptblox.com" .. script.game.imageUrl))
         end)
     wait(0.1)
 
@@ -4902,9 +4947,6 @@ local function GetPing()
 return localplr:GetNetworkPing()
 end
 
-game:GetService("RunService").RenderStepped:Connect(function()
-    Network.Overlay.Holder.Information.Ping.Text = "<font color=\"#4FA4F2\">" .. tostring(math.floor(GetPing() * 1000)) .. "</font> MS Ping"
-    end)
 
 local RunService = game:GetService("RunService")
 local FpsLabel = Network.Overlay.Holder.Information.Memory
@@ -4967,6 +5009,10 @@ end;
 task.spawn(C_177);
 -- StarterGui.Delta.Console.RobloxConsole.LocalScript
 local function C_178()
+if not isfile("useconsole") then
+    return -- This will exit the script
+end
+
 local script = DELTA["178"];
 local logserv = game:GetService("LogService")
 local elements = script.Parent.Parent.ConsoleElements
@@ -5203,6 +5249,18 @@ UILib.Settings:AddSwitch("Syn Env", "Uses Synapse X' naming standard", isfile("u
 
 end)
 
+UILib.Settings:AddSwitch("Console", "Toggle roblox console logs in the GUI", isfile("useconsole"), function(state)
+
+    if(state) then
+        if(isfile("useconsole")) then
+            delfile("useconsole")
+        end
+    else
+        writefile("useconsole", "hi")
+    end
+
+end)
+
 UILib.Settings:AddDropdown("FPS Cap", "Change the FPS cap for a smoother experience", "60 FPS", {"60 FPS", "120 FPS", "Max FPS"}, function(selection)
 		if selection == "60 FPS" then
 			setfpscap(60)
@@ -5261,7 +5319,7 @@ UILib.Settings:AddButton("Rejoin", "Rejoins your current server", function()
     end)  
 
     UILib.Settings:AddButton("Small Server", "Joins a server with a low playercount", function()
-local Http = game:GetService("HttpService")
+        local Http = game:GetService("HttpService")
 local TPS = game:GetService("TeleportService")
 local Api = "https://games.roblox.com/v1/games/"
 
@@ -5357,7 +5415,7 @@ Teleport()
 
 -- Built-In scripts
 UILib.SavedScripts:Add("Keyboard", "loadstring(game:HttpGet('https://raw.githubusercontent.com/AZYsGithub/Delta-Scripts/main/MobileKeyboard.txt'))()","Built-In")
-UILib.SavedScripts:Add("HoHo Hub", "loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()","No Key")
+UILib.SavedScripts:Add("HoHo Hub", "loadstring(game:HttpGet('https://raw.githubusercontent.com/acsu123/HOHO_H/main/Loading_UI'))()","Featured")
 
 
 -- Get all scripts and load em' (make sure Built-In scripts first otherwise Built-In scripts gonna under thr saved scripts) --nvm this shit
@@ -5693,6 +5751,18 @@ function whitelist()
     return false
 end
 
+function boost_whitelist()
+    local username = game.Players.LocalPlayer.Name
+    local response = game:HttpGet("https://deltafunny.dosware.repl.co/checkKey/" .. username)
+    if string.find(response, "true") then
+        writefile("dsigfiureikuger.txt", "BOOST")
+        GrantAccess()
+        return true
+    end
+    return false
+end
+
+
 
 
 
@@ -5710,8 +5780,21 @@ function checkkey()
         return true
 	end
 
+    if Verify() then
+        GrantAccess()
+        return true
+    end
+
     if(savedkey == "WHITELIST") then
         if whitelist() then
+            GrantAccess()
+            return true
+        end
+    end
+
+    if(savedkey == "BOOST") then
+        if boost_whitelist() then
+            GrantAccess()
             return true
         end
     end

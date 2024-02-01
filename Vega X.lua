@@ -1337,7 +1337,7 @@ VegaXMenuToggleFrame.BorderSizePixel = 0
 VegaXMenuToggleFrame.ClipsDescendants = true
 VegaXMenuToggleFrame.Position = UDim2.new(0, 104, 0, -32)
 VegaXMenuToggleFrame.Size = UDim2.new(0, 64, 0, 32)
-VegaXMenuToggleFrame.Visible = false
+VegaXMenuToggleFrame.Visible = true
 VegaXMenuToggleFrame.ZIndex = 10
 
 UICorner_35.CornerRadius = UDim.new(0, 10)
@@ -1390,6 +1390,7 @@ KeySystem.BorderColor3 = Color3.fromRGB(30, 30, 30)
 KeySystem.BorderSizePixel = 0
 KeySystem.Position = UDim2.new(0, 0, 2, -20)
 KeySystem.Size = UDim2.new(1, 0, 1, 40)
+KeySystem.Visible = false
 
 MainTitle.Name = "MainTitle"
 MainTitle.Parent = KeySystem
@@ -2867,7 +2868,7 @@ local function KJDH_fake_script() -- VegaXAndroidUI.Loading
 		script.Parent.KeySystem.SubTitle.Text = KSSubTitleNotif3
 		setclipboard("https://vegax.gg/discord.html")
 	end)
-	
+
 	
 end
 coroutine.wrap(KJDH_fake_script)()

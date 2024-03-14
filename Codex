@@ -599,7 +599,7 @@ do
 	-- SPDM
 	function utils:Notify(text: string)
 		cloneref(game:GetService("StarterGui")):SetCore("SendNotification", {
-			Title = "Codex " .. (isiosdevice() and "iOS" or "Android"),
+			Title = "Codex - Alysse Version,
 			Text = text
 		});
 	end
@@ -990,7 +990,7 @@ do
 		cache = {
 			{
 				title = "Script 1",
-				content = "print('Hello World!');",
+				content = "-- Thanks for using Codex UI [ Alysse Team ]",
 				index = 1
 			}
 		},
@@ -4181,7 +4181,7 @@ do
 				AnchorPoint = Vector2.new(0.5, 0.5),
 				Name = "title",
 				Position = UDim2.new(0.5, 0, 0.2, -20),
-				Text = "Codex " .. (isiosdevice() and "iOS" or "Android"),
+				Text = "Codex - Alysse Version",
 				TextSize = 24
 			}),
 			textLabel({
@@ -4534,7 +4534,7 @@ do
 					FontSize = Enum.FontSize.Size18, 
 					Name = "title", 
 					Position = UDim2.new(0, 78, 0, 38), 
-					Text = "Codex " .. (isiosdevice() and "iOS" or "Android"),
+					Text = "Codex - Alysse Version,
 					TextColor3 = Color3.fromHex("ffffff"), 
 					TextSize = 16, 
 					TextTransparency = 1,

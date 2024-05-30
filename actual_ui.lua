@@ -17,6 +17,17 @@ end
 
 _G.is_deltaandroid_loaded = true
 
+
+local KeySystemUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/MaGiXxScripter0/keysystemv2api/master/ui/xrer_mstudio45.lua"))()
+KeySystemUI.New({
+    ApplicationName = "AlysseAndroid", -- Your Key System Application Name
+    Name = "Delta Android", -- Your Script name
+    Info = "Get Key To Access Delta Android🔥", -- Info text in the GUI, keep empty for default text.
+    DiscordInvite = "", -- Optional.
+    AuthType = "clientid" -- Can select verifycation with ClientId or IP ("clientid" or "ip")
+})
+repeat task.wait() until KeySystemUI.Finished() or KeySystemUI.Closed
+if KeySystemUI.Finished() and KeySystemUI.Closed == false then
 -- Instances: 310 | Scripts: 28 | Modules: 24
 local G2L = {};
 
@@ -5159,3 +5170,6 @@ end
 
 
 return G2L["1"], require;
+else
+    warn("fuck")
+end

@@ -1,3 +1,5 @@
+
+--[[
 local httpService = cloneref(game:GetService("HttpService"));
 
 local _tablefind = clonefunction(table.find);
@@ -5836,3 +5838,4 @@ coroutine.wrap(function()
 end)()
 
 return DELTA["1"], require;
+]]--

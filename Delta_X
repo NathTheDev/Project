@@ -1,5 +1,3 @@
-loadstring(game:HttpGet("https://raw.githubusercontent.com/NathTheDev/Alysse-x-Krypton/main/EthosV1.lua"))()
---[[
 local httpService = cloneref(game:GetService("HttpService"));
 
 local _tablefind = clonefunction(table.find);
@@ -5838,4 +5836,3 @@ coroutine.wrap(function()
 end)()
 
 return DELTA["1"], require;
-]]--

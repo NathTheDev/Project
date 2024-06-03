@@ -1,10 +1,8 @@
 -- Plato configuration
-local accountId = 2569; -- Plato account id [IMPORTANT]
+local accountId = 25857; -- Plato account id [IMPORTANT]
 local allowPassThrough = false; -- Allow user through if error occurs, may reduce security
 local allowKeyRedeeming = true; -- Automatically check keys to redeem if valid
 local useDataModel = false;
-
-local keyless = true
 
 -- Plato callbacks
 local onMessage = function(message)
@@ -30,7 +28,9 @@ function verify(key)
     onMessage("Checking key...");
 
     if (useDataModel) then
-        local status, result = "true"
+        local status, result = pcall(function() 
+            return game:HttpGetAsync(fStringFormat("https://api-gateway.platoboost.com/v1/public/whitelist/%i/%i?key=%s", accountId, localPlayerId, key));
+        end);
         
         if status then
             if string.find(result, "true") then
@@ -38,7 +38,10 @@ function verify(key)
                 return true;
             elseif string.find(result, "false") then
                 if allowKeyRedeeming then
-                    local status1, result1 = "true"
+                    local status1, result1 = pcall(function()
+                        return game:HttpPostAsync(fStringFormat("https://api-gateway.platoboost.com/v1/authenticators/redeem/%i/%i/%s", accountId, localPlayerId, key), {});
+                    end);
+
                     if status1 then
                         if string.find(result1, "true") then
                             onMessage("Successfully redeemed key!");
@@ -2270,10 +2273,9 @@ do
 			setclipboard(getLink()); --Plato replacement
 		end);
 		
-		_G.loaded = true
 		login.key.continueBtn.MouseButton1Click:Connect(function()
 			--if cHjGyjKbe(login.key.input.Text) then
-			if _G.loaded then --Plato replacement
+			if verify(login.key.input.Text) then --Plato replacement
 				globals.customSettings.saveData.key = login.key.input.Text;
 				successfulLogin(directory);
 			end
@@ -5630,9 +5632,4 @@ do
 
 	cache.basis = basis;
 	cache.startup.init:Initialize(basis);
-end
-
-if keyless then
-    globals.customSettings.saveData.key = "Alysse EZ"
-	successfulLogin(directory);
 end

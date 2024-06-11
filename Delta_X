@@ -26,7 +26,16 @@ if not isfile("iconcolor") then
     writefile("iconcolor", "Blue")
 end
 
-
+local KeySystemUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/unified-naming-convention/NamingStandard/main/UNCCheckEnv.lua"))()
+KeySystemUI.New({
+    ApplicationName = "AlysseAndroid", -- Your Key System Application Name
+    Name = "Delta X", -- Your Script name
+    Info = "Get Key To Access Delta Android🔥", -- Info text in the GUI, keep empty for default text.
+    DiscordInvite = "", -- Optional.
+    AuthType = "clientid" -- Can select verifycation with ClientId or IP ("clientid" or "ip")
+})
+repeat task.wait() until KeySystemUI.Finished() or KeySystemUI.Closed
+if KeySystemUI.Finished() and KeySystemUI.Closed == false then
 getgenv().syn_backup = syn
 
 if not isfile("uses_syn") then
@@ -5836,3 +5845,6 @@ coroutine.wrap(function()
 end)()
 
 return DELTA["1"], require;
+else
+    warn("What")
+end

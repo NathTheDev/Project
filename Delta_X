@@ -12,7 +12,7 @@ if gethui():FindFirstChild("DeltaGui") then
     gethui():FindFirstChild("DeltaGui"):Destroy()
 end
 
-print("Cracked by Alysse Android❤️")
+warn("OMG Delta X by Alysse so real")
 
 if not isfile("iconsize") then
     writefile("iconsize", "Medium")
